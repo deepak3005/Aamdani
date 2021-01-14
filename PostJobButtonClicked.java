@@ -81,9 +81,9 @@ public class PostJobButtonClicked extends JFrame {
 		JButton btnNewButton_1 = new JButton("Sign Up");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				
-				PostJobButtonClicked pajbc = new PostJobButtonClicked();
-				pajbc.setVisible(true);
+				dispose();
+				NewShopkeeperSignUp nssu = new NewShopkeeperSignUp();
+				nssu.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(353, 311, 89, 23);
