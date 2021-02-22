@@ -1,9 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -194,29 +192,45 @@ public class NewShopkeeperSignUp extends JFrame {
                     JOptionPane.showMessageDialog(null, "Password did not match with the confirmed password !");
                 }
 
-                try {
+                try 
+                {
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+                    
+                    String query1 = "SELECT * FROM shopkeeper_sign_up where shopkeeper_email ='" + shopkeeperEmail + "'";
+                    String query3 = "SELECT * FROM student_sign_up where student_email ='" + shopkeeperEmail + "'";
 
-                    String query = "INSERT INTO shopkeeper_sign_up values('" + shopkeeperName + "','" + shopkeeperPhone + "','" + shopkeeperEmail + "','" +
+                    String query2 = "INSERT INTO shopkeeper_sign_up values('" + shopkeeperName + "','" + shopkeeperPhone + "','" + shopkeeperEmail + "','" +
                     		shopkeeperPswd + "','" + shopkeeperConfirmpswd + "','" + shopkeeperShopName + "','" + shopkeeperShopAddress + "')";
 
                     Statement sta = connection.createStatement();
-                    int x = sta.executeUpdate(query);
-                    //if (x == 0) {
-                      //  JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
-                    //} else {
-                      //  JOptionPane.showMessageDialog(btnNewButton,
-                        //    "Welcome, " + msg + "Your account is sucessfully created");
+                    Statement sta2 = connection.createStatement();
                     
-                    connection.close();
-                } catch (Exception exception) {
+                    ResultSet rs = sta.executeQuery(query1);
+                    ResultSet rs1 = sta2.executeQuery(query3);
+                    
+                    if(rs.next()==false&&rs1.next()==false)
+                    {
+                    	int x = sta.executeUpdate(query2);
+                        if (x != 0) 
+                        {
+                        	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created");
+                            connection.close();
+                        }
+                    }
+                    else
+                    {
+                    	JOptionPane.showMessageDialog(null, "This email already exists !");
+                    }
+                    
+                }
+                catch (Exception exception) 
+                {
                     exception.printStackTrace();
                 }
 				
-				
-				//dispose();
-				//PostJobButtonClicked pjbc = new PostJobButtonClicked();
-				//pjbc.setVisible(true);
+				dispose();
+				PostJobButtonClicked pjbc = new PostJobButtonClicked();
+				pjbc.setVisible(true);
 			}
 		});
 		btnNewButton.setBorder(null);
