@@ -1,7 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
-
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,21 +16,26 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JEditorPane;
 import java.awt.Cursor;
+import javax.swing.JOptionPane;
 
 public class FindJobButtonClicked extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtDfgh;
-	private JPasswordField passwordField;
+	private JTextField student_email_entered;
+	private JPasswordField student_password_entered;
 
 	/**
 	 * Launch the application.
@@ -59,8 +67,35 @@ public class FindJobButtonClicked extends JFrame {
 		
 		JButton btnNewButton = new JButton("Sign In");
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		btnNewButton.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{
+				String emailEntered = student_email_entered.getText();
+				String pswdEntered = student_password_entered.getText();
+				
+				try 
+				{
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+
+                    Statement stmt = connection.createStatement();
+                    String query = "SELECT * FROM student_sign_up where student_email ='" + emailEntered + "' and student_password ='" + pswdEntered + "'";
+                    ResultSet rs = stmt.executeQuery(query);
+                    if(rs.next()==false)
+                    {
+                    	JOptionPane.showMessageDialog(null, "Incorrect email or password !");
+                    }
+                    else
+                    {
+                    	JOptionPane.showMessageDialog(null, "Congrats ! You exist !");
+                    }
+                    
+                }
+                    
+				catch (Exception exception) 
+				{
+                    exception.printStackTrace();
+                }
 				
 			}
 		});
@@ -76,11 +111,11 @@ public class FindJobButtonClicked extends JFrame {
 		btnNewButton.setBounds(323, 229, 278, 40);
 		contentPane.add(btnNewButton);
 		
-		txtDfgh = new JTextField();
-		txtDfgh.setFont(new Font("Calibri", Font.BOLD, 18));
-		txtDfgh.setBounds(323, 87, 278, 34);
-		contentPane.add(txtDfgh);
-		txtDfgh.setColumns(10);
+		student_email_entered = new JTextField();
+		student_email_entered.setFont(new Font("Calibri", Font.BOLD, 18));
+		student_email_entered.setBounds(323, 87, 278, 34);
+		contentPane.add(student_email_entered);
+		student_email_entered.setColumns(10);
 		
 		JTextArea txtrEmail = new JTextArea();
 		txtrEmail.setEditable(false);
@@ -129,9 +164,9 @@ public class FindJobButtonClicked extends JFrame {
 		lblNewLabel.setBounds(40, 90, 152, 255);
 		contentPane.add(lblNewLabel);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Calibri", Font.BOLD, 18));
-		passwordField.setBounds(323, 151, 278, 34);
-		contentPane.add(passwordField);
+		student_password_entered = new JPasswordField();
+		student_password_entered.setFont(new Font("Calibri", Font.BOLD, 18));
+		student_password_entered.setBounds(323, 151, 278, 34);
+		contentPane.add(student_password_entered);
 	}
 }
