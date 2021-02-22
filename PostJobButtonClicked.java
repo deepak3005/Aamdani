@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.sql.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,12 +20,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JSlider;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JEditorPane;
+import java.awt.Cursor;
+import javax.swing.JOptionPane;
 
 public class PostJobButtonClicked extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtDfgh;
-	private JTextField textField_1;
+	private JTextField shopkeeper_email_entered;
+	private JPasswordField shopkeeper_password_entered;
 
 	/**
 	 * Launch the application.
@@ -55,6 +60,44 @@ public class PostJobButtonClicked extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Sign In");
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+				String emailEntered = shopkeeper_email_entered.getText();
+				String pswdEntered = shopkeeper_password_entered.getText();
+				
+				try 
+				{
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+
+                    Statement stmt = connection.createStatement();
+                    String query = "SELECT * FROM shopkeeper_sign_up where shopkeeper_email ='" + emailEntered + "' and shopkeeper_password ='" + pswdEntered + "'";
+                    ResultSet rs = stmt.executeQuery(query);
+                    if(rs.next()==false)
+                    {
+                    	JOptionPane.showMessageDialog(null, "Incorrect email or password !");
+                    }
+                    else
+                    {
+                    	JOptionPane.showMessageDialog(null, "Congrats ! You exist !");
+                    }
+                    
+                }
+                    
+				catch (Exception exception) 
+				{
+                    exception.printStackTrace();
+                }
+				
+				ShopkeeperDashboard sdx = new ShopkeeperDashboard();
+				sdx.setVisible(true);
+			}
+		});
+		
+		
 		btnNewButton.setBorder(null);
 		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton.setForeground(Color.WHITE);
@@ -67,17 +110,11 @@ public class PostJobButtonClicked extends JFrame {
 		btnNewButton.setBounds(323, 229, 278, 40);
 		contentPane.add(btnNewButton);
 		
-		txtDfgh = new JTextField();
-		txtDfgh.setFont(new Font("Calibri", Font.BOLD, 18));
-		txtDfgh.setBounds(323, 90, 278, 34);
-		contentPane.add(txtDfgh);
-		txtDfgh.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Calibri", Font.BOLD, 18));
-		textField_1.setBounds(323, 154, 278, 34);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		shopkeeper_email_entered = new JTextField();
+		shopkeeper_email_entered.setFont(new Font("Calibri", Font.BOLD, 18));
+		shopkeeper_email_entered.setBounds(323, 87, 278, 34);
+		contentPane.add(shopkeeper_email_entered);
+		shopkeeper_email_entered.setColumns(10);
 		
 		JTextArea txtrEmail = new JTextArea();
 		txtrEmail.setEditable(false);
@@ -104,6 +141,7 @@ public class PostJobButtonClicked extends JFrame {
 		contentPane.add(txtrNewUser);
 		
 		JButton btnNewButton_1 = new JButton("Sign Up");
+		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -124,5 +162,10 @@ public class PostJobButtonClicked extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(40, 90, 152, 255);
 		contentPane.add(lblNewLabel);
+		
+		shopkeeper_password_entered = new JPasswordField();
+		shopkeeper_password_entered.setFont(new Font("Calibri", Font.BOLD, 18));
+		shopkeeper_password_entered.setBounds(323, 151, 278, 34);
+		contentPane.add(shopkeeper_password_entered);
 	}
 }
