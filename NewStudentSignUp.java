@@ -203,28 +203,40 @@ public class NewStudentSignUp extends JFrame {
                 try {
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
 
-                    String query = "INSERT INTO Student_Sign_Up values('" + stuName + "','" + stuPhone + "','" + stuEmail + "','" +
+                    String query1 = "SELECT * FROM student_sign_up where student_email ='" + stuEmail + "'";
+                    String query3 = "SELECT * FROM shopkeeper_sign_up where shopkeeper_email ='" + stuEmail + "'";
+                    
+                    String query2 = "INSERT INTO Student_Sign_Up values('" + stuName + "','" + stuPhone + "','" + stuEmail + "','" +
                     		stuPswd + "','" + stuConfirmpswd + "','" + stuSpecialization + "','" + stuYear + "','" + stuSapid + "','" + stuDegree + "','" + stuCourse + "')";
 
                     Statement sta = connection.createStatement();
-                    int x = sta.executeUpdate(query);
-                    if (x == 0) 
+                    Statement sta2 = connection.createStatement();
+                    
+                    ResultSet rs = sta.executeQuery(query1);
+                    ResultSet rs2 = sta2.executeQuery(query3);
+                    
+                    if(rs.next()==false&&rs2.next()==false)
                     {
-                        JOptionPane.showMessageDialog(null, "This user already exist !");
-                    } 
-                    else 
+                    	int x = sta.executeUpdate(query2);
+                        if (x != 0) 
+                        {
+                        	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created.");
+                            connection.close();
+                        } 
+                    }
+                    else
                     {
-                        JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created.");
-                        connection.close();
-                    } 
+                    	JOptionPane.showMessageDialog(null, "This email already exists !");
+                    }
+                    
                 }
                     catch (Exception exception) {
                     exception.printStackTrace();
                 }
          
-				//dispose();
-				//FindJobButtonClicked pjbc = new FindJobButtonClicked();
-				//pjbc.setVisible(true);
+				dispose();
+				FindJobButtonClicked pjbc = new FindJobButtonClicked();
+				pjbc.setVisible(true);
 			}	
 		});
 
