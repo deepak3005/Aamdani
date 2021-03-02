@@ -112,7 +112,7 @@ public class PostJobButtonClicked extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		shopkeeper_email_entered = new JTextField();
-		shopkeeper_email_entered.setForeground(Color.BLACK);
+		shopkeeper_email_entered.setForeground(Color.DARK_GRAY);
 		shopkeeper_email_entered.setFont(new Font("Calibri", Font.BOLD, 26));
 		shopkeeper_email_entered.setBounds(213, 174, 293, 45);
 		contentPane.add(shopkeeper_email_entered);
@@ -169,6 +169,7 @@ public class PostJobButtonClicked extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		shopkeeper_password_entered = new JPasswordField();
+		shopkeeper_password_entered.setForeground(Color.DARK_GRAY);
 		shopkeeper_password_entered.setFont(new Font("Calibri", Font.BOLD, 26));
 		shopkeeper_password_entered.setBounds(213, 257, 293, 45);
 		contentPane.add(shopkeeper_password_entered);
