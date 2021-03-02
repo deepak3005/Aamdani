@@ -22,6 +22,7 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
+import java.awt.Point;
 
 public class SecondFrame extends JFrame {
 
@@ -48,6 +49,7 @@ public class SecondFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public SecondFrame() {
+		setResizable(false);
 		setTitle("Aamdani");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -65,7 +67,7 @@ public class SecondFrame extends JFrame {
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton.setBorder(null);
 		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(60, 179, 113));
+		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -89,7 +91,7 @@ public class SecondFrame extends JFrame {
 		btnFindAJob.setForeground(new Color(255, 255, 255));
 		btnFindAJob.setFont(new Font("Calibri", Font.BOLD, 50));
 		btnFindAJob.setBorder(null);
-		btnFindAJob.setBackground(new Color(60, 179, 113));
+		btnFindAJob.setBackground(SystemColor.textHighlight);
 		btnFindAJob.setBounds(533, 400, 362, 181);
 		contentPane.add(btnFindAJob);
 		
@@ -98,19 +100,5 @@ public class SecondFrame extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(95, 40, 800, 300);
 		contentPane.add(lblNewLabel);
-		
-		/*JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		Image img = new ImageIcon(this.getClass().getResource("/BackButton.png")).getImage();
-		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				PostJobButtonClicked f = new PostJobButtonClicked();
-				f.setVisible(true);
-			}
-		});
-		lblNewLabel.setBounds(38, 28, 51, 34);
-		contentPane.add(lblNewLabel);*/
 	}
 }
