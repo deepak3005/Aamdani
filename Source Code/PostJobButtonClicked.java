@@ -24,11 +24,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JEditorPane;
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 
 public class PostJobButtonClicked extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField shopkeeper_email_entered;
+	public static JTextField shopkeeper_email_entered;
 	private JPasswordField shopkeeper_password_entered;
 
 	/**
@@ -40,6 +41,7 @@ public class PostJobButtonClicked extends JFrame {
 				try {
 					PostJobButtonClicked frame = new PostJobButtonClicked();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,10 +53,11 @@ public class PostJobButtonClicked extends JFrame {
 	 * Create the frame.
 	 */
 	public PostJobButtonClicked() {
+		setTitle("Shopkeeper Sign In");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 680, 470);
+		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -80,18 +83,13 @@ public class PostJobButtonClicked extends JFrame {
                     {
                     	JOptionPane.showMessageDialog(null, "Incorrect email or password !");
                     }
-                    else
-                    {
-                    	JOptionPane.showMessageDialog(null, "Congrats ! You exist !");
-                    }
-                    
                 }
                     
 				catch (Exception exception) 
 				{
                     exception.printStackTrace();
                 }
-				
+				dispose();
 				ShopkeeperDashboard sdx = new ShopkeeperDashboard();
 				sdx.setVisible(true);
 			}
@@ -101,43 +99,47 @@ public class PostJobButtonClicked extends JFrame {
 		btnNewButton.setBorder(null);
 		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 28));
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(323, 229, 278, 40);
+		btnNewButton.setBounds(213, 340, 293, 45);
 		contentPane.add(btnNewButton);
 		
 		shopkeeper_email_entered = new JTextField();
-		shopkeeper_email_entered.setFont(new Font("Calibri", Font.BOLD, 18));
-		shopkeeper_email_entered.setBounds(323, 87, 278, 34);
+		shopkeeper_email_entered.setForeground(Color.BLACK);
+		shopkeeper_email_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		shopkeeper_email_entered.setBounds(213, 174, 293, 45);
 		contentPane.add(shopkeeper_email_entered);
 		shopkeeper_email_entered.setColumns(10);
 		
 		JTextArea txtrEmail = new JTextArea();
+		txtrEmail.setForeground(Color.WHITE);
 		txtrEmail.setEditable(false);
-		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrEmail.setBackground(Color.LIGHT_GRAY);
+		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrEmail.setBackground(Color.DARK_GRAY);
 		txtrEmail.setText("Email");
-		txtrEmail.setBounds(251, 97, 55, 23);
+		txtrEmail.setBounds(106, 185, 64, 28);
 		contentPane.add(txtrEmail);
 		
 		JTextArea txtrPassword = new JTextArea();
+		txtrPassword.setForeground(Color.WHITE);
 		txtrPassword.setEditable(false);
-		txtrPassword.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrPassword.setBackground(Color.LIGHT_GRAY);
+		txtrPassword.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrPassword.setBackground(Color.DARK_GRAY);
 		txtrPassword.setText("Password");
-		txtrPassword.setBounds(213, 160, 97, 23);
+		txtrPassword.setBounds(64, 267, 108, 28);
 		contentPane.add(txtrPassword);
 		
 		JTextArea txtrNewUser = new JTextArea();
+		txtrNewUser.setForeground(Color.WHITE);
 		txtrNewUser.setEditable(false);
-		txtrNewUser.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrNewUser.setBackground(Color.LIGHT_GRAY);
+		txtrNewUser.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrNewUser.setBackground(Color.DARK_GRAY);
 		txtrNewUser.setText("New User ?");
-		txtrNewUser.setBounds(323, 316, 108, 23);
+		txtrNewUser.setBounds(213, 437, 127, 23);
 		contentPane.add(txtrNewUser);
 		
 		JButton btnNewButton_1 = new JButton("Sign Up");
@@ -146,7 +148,7 @@ public class PostJobButtonClicked extends JFrame {
 		btnNewButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(SystemColor.textHighlight);
-		btnNewButton_1.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnNewButton_1.setFont(new Font("Calibri", Font.BOLD, 28));
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -154,18 +156,18 @@ public class PostJobButtonClicked extends JFrame {
 				nssu.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(464, 305, 137, 40);
+		btnNewButton_1.setBounds(361, 425, 145, 45);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/Login-icon.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/login-large-1.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(40, 90, 152, 255);
+		lblNewLabel.setBounds(570, 157, 340, 333);
 		contentPane.add(lblNewLabel);
 		
 		shopkeeper_password_entered = new JPasswordField();
-		shopkeeper_password_entered.setFont(new Font("Calibri", Font.BOLD, 18));
-		shopkeeper_password_entered.setBounds(323, 151, 278, 34);
+		shopkeeper_password_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		shopkeeper_password_entered.setBounds(213, 257, 293, 45);
 		contentPane.add(shopkeeper_password_entered);
 	}
 }
