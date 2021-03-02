@@ -134,6 +134,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.add(txtrDistanceFromUpes);
 		
 		shopkeeper_name = new JTextField();
+		shopkeeper_name.setForeground(Color.DARK_GRAY);
 		shopkeeper_name.setAutoscrolls(false);
 		shopkeeper_name.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_name.setBounds(293, 180, 230, 30);
@@ -142,6 +143,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		shopkeeper_name.setColumns(10);
 		
 		shopkeeper_phone = new JTextField();
+		shopkeeper_phone.setForeground(Color.DARK_GRAY);
 		shopkeeper_phone.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_phone.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_phone.setBounds(293, 240, 230, 30);
@@ -149,6 +151,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.add(shopkeeper_phone);
 		
 		shopkeeper_email = new JTextField();
+		shopkeeper_email.setForeground(Color.DARK_GRAY);
 		shopkeeper_email.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_email.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_email.setBounds(293, 300, 230, 30);
@@ -156,6 +159,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.add(shopkeeper_email);
 		
 		shopkeeper_shop_name = new JTextField();
+		shopkeeper_shop_name.setForeground(Color.DARK_GRAY);
 		shopkeeper_shop_name.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_shop_name.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_shop_name.setBounds(293, 480, 230, 30);
@@ -163,6 +167,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.add(shopkeeper_shop_name);
 		
 		shopkeeper_shop_address = new JTextField();
+		shopkeeper_shop_address.setForeground(Color.DARK_GRAY);
 		shopkeeper_shop_address.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_shop_address.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_shop_address.setBounds(293, 540, 230, 30);
@@ -171,7 +176,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		
 		JButton btnNewButton = new JButton("Sign Up");
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setBounds(653, 522, 179, 48);
+		btnNewButton.setBounds(654, 522, 179, 48);
 		btnNewButton.addMouseListener(new MouseAdapter() 
 		{
 			public void mouseClicked(MouseEvent arg0) 
@@ -268,12 +273,14 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		shopkeeper_password = new JPasswordField();
+		shopkeeper_password.setForeground(Color.DARK_GRAY);
 		shopkeeper_password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_password.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_password.setBounds(293, 360, 230, 30);
 		contentPane.add(shopkeeper_password);
 		
 		shopkeeper_confirm_password = new JPasswordField();
+		shopkeeper_confirm_password.setForeground(Color.DARK_GRAY);
 		shopkeeper_confirm_password.setFont(new Font("Calibri", Font.BOLD, 19));
 		shopkeeper_confirm_password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_confirm_password.setBounds(293, 420, 230, 30);
