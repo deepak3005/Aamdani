@@ -1,18 +1,22 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Cursor;
 
 public class Frame1 {
 
-	private JFrame frame;
+	private JFrame frmAamdani;
 
 	/**
 	 * Launch the application.
@@ -22,7 +26,7 @@ public class Frame1 {
 			public void run() {
 				try {
 					Frame1 window = new Frame1();
-					window.frame.setVisible(true);
+					window.frmAamdani.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,41 +45,53 @@ public class Frame1 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-		frame.setBounds(100, 100, 680, 470);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JButton btnNewButton = new JButton("POST A JOB");
-		btnNewButton.setBorder(null);
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(Color.DARK_GRAY);
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				frame.dispose();
-				PostJobButtonClicked pajbc = new PostJobButtonClicked();
-				pajbc.setVisible(true);
-			}
-		});
-		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnNewButton.setBounds(114, 242, 180, 85);
-		frame.getContentPane().add(btnNewButton);
+		frmAamdani = new JFrame();
+		frmAamdani.setTitle("Aamdani");
+		frmAamdani.getContentPane().setBackground(Color.DARK_GRAY);
+		frmAamdani.setBounds(100, 100, 1000, 700);
+		frmAamdani.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAamdani.getContentPane().setLayout(null);
+		frmAamdani.setLocationRelativeTo(null);
 		
 		JTextArea txtrWelcome = new JTextArea();
-		txtrWelcome.setBackground(Color.LIGHT_GRAY);
+		txtrWelcome.setForeground(Color.WHITE);
+		txtrWelcome.setBackground(Color.DARK_GRAY);
 		txtrWelcome.setEditable(false);
-		txtrWelcome.setFont(new Font("Calibri", Font.BOLD, 40));
+		txtrWelcome.setFont(new Font("Calibri", Font.BOLD, 60));
 		txtrWelcome.setText("Welcome To AAMDANI");
-		txtrWelcome.setBounds(140, 56, 392, 39);
-		frame.getContentPane().add(txtrWelcome);
+		txtrWelcome.setBounds(206, 73, 584, 55);
+		frmAamdani.getContentPane().add(txtrWelcome);
 		
-		JButton btnNewButton_1 = new JButton("FIND A JOB");
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(Color.DARK_GRAY);
-		btnNewButton_1.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnNewButton_1.setBounds(376, 242, 180, 85);
-		frame.getContentPane().add(btnNewButton_1);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				frmAamdani.dispose();
+				SecondFrame sf = new SecondFrame();
+				sf.setVisible(true);
+			}
+		});
+		lblNewLabel.setBounds(367, 172, 250, 250);
+		Image img = new ImageIcon(this.getClass().getResource("/handshake.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img));
+		frmAamdani.getContentPane().add(lblNewLabel);
+		
+		JTextArea txtrBlahBlahBlah = new JTextArea();
+		txtrBlahBlahBlah.setForeground(Color.WHITE);
+		txtrBlahBlahBlah.setEditable(false);
+		txtrBlahBlahBlah.setText("Description sort of ...");
+		txtrBlahBlahBlah.setFont(new Font("Calibri", Font.BOLD, 18));
+		txtrBlahBlahBlah.setBackground(Color.DARK_GRAY);
+		txtrBlahBlahBlah.setBounds(411, 487, 162, 47);
+		frmAamdani.getContentPane().add(txtrBlahBlahBlah);
+		
+		JTextArea txtrClickOnThe = new JTextArea();
+		txtrClickOnThe.setForeground(Color.WHITE);
+		txtrClickOnThe.setEditable(false);
+		txtrClickOnThe.setText("Click on the logo above to Get Started ...");
+		txtrClickOnThe.setFont(new Font("Calibri", Font.BOLD, 18));
+		txtrClickOnThe.setBackground(Color.DARK_GRAY);
+		txtrClickOnThe.setBounds(340, 534, 309, 47);
+		frmAamdani.getContentPane().add(txtrClickOnThe);
 	}
 }
