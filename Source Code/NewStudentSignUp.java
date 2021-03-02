@@ -60,6 +60,7 @@ public class NewStudentSignUp extends JFrame {
 				try {
 					NewStudentSignUp frame = new NewStudentSignUp();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,6 +72,7 @@ public class NewStudentSignUp extends JFrame {
 	 * Create the frame.
 	 */
 	public NewStudentSignUp() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 680, 470);
 		contentPane = new JPanel();
@@ -190,53 +192,56 @@ public class NewStudentSignUp extends JFrame {
                     JOptionPane.showMessageDialog(null, "Enter a valid mobile number");
                 }
                 
-                if (stuName.length()==0||stuPhone.length()==0||stuEmail.length()==0||stuPswd.length()==0||stuConfirmpswd.length()==0||stuDegree.length()==0||stuCourse.length()==0||stuYear.length()==0||stuSapid.length()==0) 
+                else if (stuName.length()==0||stuPhone.length()==0||stuEmail.length()==0||stuPswd.length()==0||stuConfirmpswd.length()==0||stuDegree.length()==0||stuCourse.length()==0||stuYear.length()==0||stuSapid.length()==0) 
                 {
                     JOptionPane.showMessageDialog(null, "Please fill out all the fields.");
                 }
                 
-                if (stuPswd.compareTo(stuConfirmpswd)!=0) 
+                else if (stuPswd.compareTo(stuConfirmpswd)!=0) 
                 {
                     JOptionPane.showMessageDialog(null, "Password did not match with the confirmed password !");
                 }
 
-                try {
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+                else
+                {
+                	try {
+                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
 
-                    String query1 = "SELECT * FROM student_sign_up where student_email ='" + stuEmail + "'";
-                    String query3 = "SELECT * FROM shopkeeper_sign_up where shopkeeper_email ='" + stuEmail + "'";
-                    
-                    String query2 = "INSERT INTO Student_Sign_Up values('" + stuName + "','" + stuPhone + "','" + stuEmail + "','" +
-                    		stuPswd + "','" + stuConfirmpswd + "','" + stuSpecialization + "','" + stuYear + "','" + stuSapid + "','" + stuDegree + "','" + stuCourse + "')";
+                        String query1 = "SELECT * FROM student_sign_up where student_email ='" + stuEmail + "'";
+                        String query3 = "SELECT * FROM shopkeeper_sign_up where shopkeeper_email ='" + stuEmail + "'";
+                        
+                        String query2 = "INSERT INTO Student_Sign_Up values('" + stuName + "','" + stuPhone + "','" + stuEmail + "','" +
+                        		stuPswd + "','" + stuConfirmpswd + "','" + stuSpecialization + "','" + stuYear + "','" + stuSapid + "','" + stuDegree + "','" + stuCourse + "')";
 
-                    Statement sta = connection.createStatement();
-                    Statement sta2 = connection.createStatement();
-                    
-                    ResultSet rs = sta.executeQuery(query1);
-                    ResultSet rs2 = sta2.executeQuery(query3);
-                    
-                    if(rs.next()==false&&rs2.next()==false)
-                    {
-                    	int x = sta.executeUpdate(query2);
-                        if (x != 0) 
+                        Statement sta = connection.createStatement();
+                        Statement sta2 = connection.createStatement();
+                        
+                        ResultSet rs = sta.executeQuery(query1);
+                        ResultSet rs2 = sta2.executeQuery(query3);
+                        
+                        if(rs.next()==false&&rs2.next()==false)
                         {
-                        	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created.");
-                            connection.close();
-                        } 
+                        	int x = sta.executeUpdate(query2);
+                            if (x != 0) 
+                            {
+                            	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created.");
+                                connection.close();
+                            } 
+                        }
+                        else
+                        {
+                        	JOptionPane.showMessageDialog(null, "This email already exists !");
+                        }
+                        
                     }
-                    else
-                    {
-                    	JOptionPane.showMessageDialog(null, "This email already exists !");
+                        catch (Exception exception) {
+                        exception.printStackTrace();
                     }
-                    
+             
+    				dispose();
+    				FindJobButtonClicked pjbc = new FindJobButtonClicked();
+    				pjbc.setVisible(true);
                 }
-                    catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-         
-				dispose();
-				FindJobButtonClicked pjbc = new FindJobButtonClicked();
-				pjbc.setVisible(true);
 			}	
 		});
 
