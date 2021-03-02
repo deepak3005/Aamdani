@@ -46,6 +46,7 @@ public class Frame1 {
 	 */
 	private void initialize() {
 		frmAamdani = new JFrame();
+		frmAamdani.setResizable(false);
 		frmAamdani.setTitle("Aamdani");
 		frmAamdani.getContentPane().setBackground(Color.DARK_GRAY);
 		frmAamdani.setBounds(100, 100, 1000, 700);
