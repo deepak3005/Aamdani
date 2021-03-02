@@ -53,6 +53,7 @@ public class PostJobButtonClicked extends JFrame {
 	 * Create the frame.
 	 */
 	public PostJobButtonClicked() {
+		setResizable(false);
 		setTitle("Shopkeeper Sign In");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -83,15 +84,17 @@ public class PostJobButtonClicked extends JFrame {
                     {
                     	JOptionPane.showMessageDialog(null, "Incorrect email or password !");
                     }
+                    else
+                    {
+                    	dispose();
+        				ShopkeeperDashboard sdx = new ShopkeeperDashboard();
+        				sdx.setVisible(true);
+                    }
                 }
-                    
 				catch (Exception exception) 
 				{
                     exception.printStackTrace();
                 }
-				dispose();
-				ShopkeeperDashboard sdx = new ShopkeeperDashboard();
-				sdx.setVisible(true);
 			}
 		});
 		
