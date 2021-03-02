@@ -46,6 +46,7 @@ public class FindJobButtonClicked extends JFrame {
 				try {
 					FindJobButtonClicked frame = new FindJobButtonClicked();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,10 +58,12 @@ public class FindJobButtonClicked extends JFrame {
 	 * Create the frame.
 	 */
 	public FindJobButtonClicked() {
+		setTitle("Student Sign In");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 680, 470);
+		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -108,37 +111,41 @@ public class FindJobButtonClicked extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(323, 229, 278, 40);
+		btnNewButton.setBounds(213, 340, 293, 45);
 		contentPane.add(btnNewButton);
 		
 		student_email_entered = new JTextField();
-		student_email_entered.setFont(new Font("Calibri", Font.BOLD, 18));
-		student_email_entered.setBounds(323, 87, 278, 34);
+		student_email_entered.setForeground(Color.DARK_GRAY);
+		student_email_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		student_email_entered.setBounds(213, 174, 293, 45);
 		contentPane.add(student_email_entered);
 		student_email_entered.setColumns(10);
 		
 		JTextArea txtrEmail = new JTextArea();
+		txtrEmail.setForeground(Color.WHITE);
 		txtrEmail.setEditable(false);
-		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrEmail.setBackground(Color.LIGHT_GRAY);
+		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrEmail.setBackground(Color.DARK_GRAY);
 		txtrEmail.setText("Email");
-		txtrEmail.setBounds(251, 97, 55, 23);
+		txtrEmail.setBounds(106, 185, 80, 31);
 		contentPane.add(txtrEmail);
 		
 		JTextArea txtrPassword = new JTextArea();
+		txtrPassword.setForeground(Color.WHITE);
 		txtrPassword.setEditable(false);
-		txtrPassword.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrPassword.setBackground(Color.LIGHT_GRAY);
+		txtrPassword.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrPassword.setBackground(Color.DARK_GRAY);
 		txtrPassword.setText("Password");
-		txtrPassword.setBounds(213, 160, 97, 23);
+		txtrPassword.setBounds(64, 267, 116, 31);
 		contentPane.add(txtrPassword);
 		
 		JTextArea txtrNewUser = new JTextArea();
+		txtrNewUser.setForeground(Color.WHITE);
 		txtrNewUser.setEditable(false);
-		txtrNewUser.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrNewUser.setBackground(Color.LIGHT_GRAY);
+		txtrNewUser.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrNewUser.setBackground(Color.DARK_GRAY);
 		txtrNewUser.setText("New User ?");
-		txtrNewUser.setBounds(323, 316, 108, 23);
+		txtrNewUser.setBounds(213, 437, 127, 31);
 		contentPane.add(txtrNewUser);
 		
 		JButton btnNewButton_1 = new JButton("Sign Up");
@@ -155,18 +162,36 @@ public class FindJobButtonClicked extends JFrame {
 				nssu.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(464, 305, 137, 40);
+		btnNewButton_1.setBounds(361, 425, 137, 40);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/Login-icon.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/login-large-1.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(40, 90, 152, 255);
+		lblNewLabel.setBounds(570, 157, 339, 316);
 		contentPane.add(lblNewLabel);
 		
 		student_password_entered = new JPasswordField();
-		student_password_entered.setFont(new Font("Calibri", Font.BOLD, 18));
-		student_password_entered.setBounds(323, 151, 278, 34);
+		student_password_entered.setForeground(Color.DARK_GRAY);
+		student_password_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		student_password_entered.setBounds(213, 254, 293, 45);
 		contentPane.add(student_password_entered);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setToolTipText("Back");
+		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_1.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				SecondFrame sf = new SecondFrame();
+				sf.setVisible(true);
+			}
+		});
+		Image img1 = new ImageIcon(this.getClass().getResource("/back-arrow.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(img1));
+		lblNewLabel_1.setBounds(15, 15, 48, 53);
+		contentPane.add(lblNewLabel_1);
 	}
 }
