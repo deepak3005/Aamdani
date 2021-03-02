@@ -172,5 +172,22 @@ public class PostJobButtonClicked extends JFrame {
 		shopkeeper_password_entered.setFont(new Font("Calibri", Font.BOLD, 26));
 		shopkeeper_password_entered.setBounds(213, 257, 293, 45);
 		contentPane.add(shopkeeper_password_entered);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setToolTipText("Back");
+		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_1.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				SecondFrame sf = new SecondFrame();
+				sf.setVisible(true);
+			}
+		});
+		Image img1 = new ImageIcon(this.getClass().getResource("/back-arrow.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(img1));
+		lblNewLabel_1.setBounds(15, 15, 50, 48);
+		contentPane.add(lblNewLabel_1);
 	}
 }
