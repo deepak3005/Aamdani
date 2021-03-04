@@ -103,9 +103,8 @@ public class FindJobButtonClicked extends JFrame {
 			}
 		});
 		btnNewButton.setBorder(null);
-		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnNewButton.setFont(new Font("Cambria", Font.BOLD, 27));
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -116,7 +115,7 @@ public class FindJobButtonClicked extends JFrame {
 		
 		student_email_entered = new JTextField();
 		student_email_entered.setForeground(Color.DARK_GRAY);
-		student_email_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		student_email_entered.setFont(new Font("Cambria", Font.BOLD, 24));
 		student_email_entered.setBounds(213, 174, 293, 45);
 		contentPane.add(student_email_entered);
 		student_email_entered.setColumns(10);
@@ -124,37 +123,36 @@ public class FindJobButtonClicked extends JFrame {
 		JTextArea txtrEmail = new JTextArea();
 		txtrEmail.setForeground(Color.WHITE);
 		txtrEmail.setEditable(false);
-		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrEmail.setFont(new Font("Cambria", Font.BOLD, 24));
 		txtrEmail.setBackground(Color.DARK_GRAY);
 		txtrEmail.setText("Email");
-		txtrEmail.setBounds(106, 185, 80, 31);
+		txtrEmail.setBounds(106, 183, 80, 31);
 		contentPane.add(txtrEmail);
 		
 		JTextArea txtrPassword = new JTextArea();
 		txtrPassword.setForeground(Color.WHITE);
 		txtrPassword.setEditable(false);
-		txtrPassword.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrPassword.setFont(new Font("Cambria", Font.BOLD, 24));
 		txtrPassword.setBackground(Color.DARK_GRAY);
 		txtrPassword.setText("Password");
-		txtrPassword.setBounds(64, 267, 116, 31);
+		txtrPassword.setBounds(64, 265, 116, 31);
 		contentPane.add(txtrPassword);
 		
 		JTextArea txtrNewUser = new JTextArea();
 		txtrNewUser.setForeground(Color.WHITE);
 		txtrNewUser.setEditable(false);
-		txtrNewUser.setFont(new Font("Calibri", Font.BOLD, 26));
+		txtrNewUser.setFont(new Font("Cambria", Font.BOLD, 24));
 		txtrNewUser.setBackground(Color.DARK_GRAY);
 		txtrNewUser.setText("New User ?");
-		txtrNewUser.setBounds(213, 437, 127, 31);
+		txtrNewUser.setBounds(213, 432, 127, 31);
 		contentPane.add(txtrNewUser);
 		
 		JButton btnNewButton_1 = new JButton("Sign Up");
 		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(SystemColor.textHighlight);
-		btnNewButton_1.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnNewButton_1.setFont(new Font("Cambria", Font.BOLD, 27));
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -173,7 +171,7 @@ public class FindJobButtonClicked extends JFrame {
 		
 		student_password_entered = new JPasswordField();
 		student_password_entered.setForeground(Color.DARK_GRAY);
-		student_password_entered.setFont(new Font("Calibri", Font.BOLD, 26));
+		student_password_entered.setFont(new Font("Cambria", Font.BOLD, 24));
 		student_password_entered.setBounds(213, 254, 293, 45);
 		contentPane.add(student_password_entered);
 		
