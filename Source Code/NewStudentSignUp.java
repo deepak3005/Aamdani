@@ -84,63 +84,63 @@ public class NewStudentSignUp extends JFrame {
 		
 		JTextArea txtrName = new JTextArea();
 		txtrName.setForeground(Color.WHITE);
-		txtrName.setBounds(113, 170, 59, 24);
+		txtrName.setBounds(108, 168, 59, 24);
 		txtrName.setEditable(false);
-		txtrName.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrName.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrName.setBackground(Color.DARK_GRAY);
 		txtrName.setText("Name");
 		contentPane.add(txtrName);
 		
 		JTextArea txtrPhoneNo = new JTextArea();
 		txtrPhoneNo.setForeground(Color.WHITE);
-		txtrPhoneNo.setBounds(113, 220, 107, 24);
+		txtrPhoneNo.setBounds(108, 218, 107, 24);
 		txtrPhoneNo.setEditable(false);
-		txtrPhoneNo.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrPhoneNo.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrPhoneNo.setBackground(Color.DARK_GRAY);
 		txtrPhoneNo.setText("Phone No.");
 		contentPane.add(txtrPhoneNo);
 		
 		JTextArea txtrEmail = new JTextArea();
 		txtrEmail.setForeground(Color.WHITE);
-		txtrEmail.setBounds(113, 270, 59, 24);
+		txtrEmail.setBounds(108, 268, 59, 24);
 		txtrEmail.setEditable(false);
-		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrEmail.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrEmail.setBackground(Color.DARK_GRAY);
 		txtrEmail.setText("Email");
 		contentPane.add(txtrEmail);
 		
 		JTextArea txtrSetPassword = new JTextArea();
 		txtrSetPassword.setForeground(Color.WHITE);
-		txtrSetPassword.setBounds(113, 320, 133, 24);
+		txtrSetPassword.setBounds(108, 318, 133, 24);
 		txtrSetPassword.setEditable(false);
-		txtrSetPassword.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrSetPassword.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrSetPassword.setBackground(Color.DARK_GRAY);
 		txtrSetPassword.setText("Set Password");
 		contentPane.add(txtrSetPassword);
 		
 		JTextArea txtrShopName = new JTextArea();
 		txtrShopName.setForeground(Color.WHITE);
-		txtrShopName.setBounds(113, 570, 86, 24);
+		txtrShopName.setBounds(108, 568, 86, 24);
 		txtrShopName.setEditable(false);
-		txtrShopName.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrShopName.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrShopName.setBackground(Color.DARK_GRAY);
 		txtrShopName.setText("SAP ID");
 		contentPane.add(txtrShopName);
 		
 		JTextArea txtrAddress = new JTextArea();
 		txtrAddress.setForeground(Color.WHITE);
-		txtrAddress.setBounds(113, 420, 86, 24);
+		txtrAddress.setBounds(108, 418, 86, 24);
 		txtrAddress.setEditable(false);
-		txtrAddress.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrAddress.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrAddress.setBackground(Color.DARK_GRAY);
 		txtrAddress.setText("Course");
 		contentPane.add(txtrAddress);
 		
 		JTextArea txtrDistanceFromUpes = new JTextArea();
 		txtrDistanceFromUpes.setForeground(Color.WHITE);
-		txtrDistanceFromUpes.setBounds(113, 370, 173, 24);
+		txtrDistanceFromUpes.setBounds(108, 368, 186, 24);
 		txtrDistanceFromUpes.setEditable(false);
-		txtrDistanceFromUpes.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrDistanceFromUpes.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrDistanceFromUpes.setBackground(Color.DARK_GRAY);
 		txtrDistanceFromUpes.setText("Confirm Password");
 		contentPane.add(txtrDistanceFromUpes);
@@ -265,9 +265,9 @@ public class NewStudentSignUp extends JFrame {
 		
 		JTextArea txtrCreateAccount = new JTextArea();
 		txtrCreateAccount.setForeground(Color.WHITE);
-		txtrCreateAccount.setBounds(105, 90, 307, 40);
+		txtrCreateAccount.setBounds(105, 80, 324, 42);
 		txtrCreateAccount.setEditable(false);
-		txtrCreateAccount.setFont(new Font("Calibri", Font.BOLD, 40));
+		txtrCreateAccount.setFont(new Font("Cambria", Font.BOLD, 38));
 		txtrCreateAccount.setBackground(Color.DARK_GRAY);
 		txtrCreateAccount.setText("CREATE ACCOUNT");
 		contentPane.add(txtrCreateAccount);
@@ -304,10 +304,10 @@ public class NewStudentSignUp extends JFrame {
 		JTextArea txtrYearOfStudy = new JTextArea();
 		txtrYearOfStudy.setForeground(Color.WHITE);
 		txtrYearOfStudy.setText("Year of study");
-		txtrYearOfStudy.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrYearOfStudy.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrYearOfStudy.setEditable(false);
 		txtrYearOfStudy.setBackground(Color.DARK_GRAY);
-		txtrYearOfStudy.setBounds(113, 520, 133, 24);
+		txtrYearOfStudy.setBounds(108, 518, 140, 27);
 		contentPane.add(txtrYearOfStudy);
 		
 		student_year = new JTextField();
@@ -330,10 +330,10 @@ public class NewStudentSignUp extends JFrame {
 		JTextArea txtrSpecialization = new JTextArea();
 		txtrSpecialization.setForeground(Color.WHITE);
 		txtrSpecialization.setText("Specialization (if any)");
-		txtrSpecialization.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrSpecialization.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrSpecialization.setEditable(false);
 		txtrSpecialization.setBackground(Color.DARK_GRAY);
-		txtrSpecialization.setBounds(113, 470, 199, 24);
+		txtrSpecialization.setBounds(108, 468, 218, 28);
 		contentPane.add(txtrSpecialization);
 		
 		student_sapid = new JTextField();
