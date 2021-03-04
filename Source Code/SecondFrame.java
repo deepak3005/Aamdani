@@ -75,7 +75,7 @@ public class SecondFrame extends JFrame {
 				pajbc.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 50));
+		btnNewButton.setFont(new Font("Cambria", Font.BOLD, 50));
 		btnNewButton.setBounds(95, 400, 362, 181);
 		getContentPane().add(btnNewButton);
 		
@@ -89,7 +89,7 @@ public class SecondFrame extends JFrame {
 			}
 		});
 		btnFindAJob.setForeground(new Color(255, 255, 255));
-		btnFindAJob.setFont(new Font("Calibri", Font.BOLD, 50));
+		btnFindAJob.setFont(new Font("Cambria", Font.BOLD, 50));
 		btnFindAJob.setBorder(null);
 		btnFindAJob.setBackground(SystemColor.textHighlight);
 		btnFindAJob.setBounds(533, 400, 362, 181);
