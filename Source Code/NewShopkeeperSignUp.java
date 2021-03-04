@@ -72,63 +72,63 @@ public class NewShopkeeperSignUp extends JFrame {
 		
 		JTextArea txtrName = new JTextArea();
 		txtrName.setForeground(Color.WHITE);
-		txtrName.setBounds(95, 185, 59, 22);
+		txtrName.setBounds(95, 183, 59, 22);
 		txtrName.setEditable(false);
-		txtrName.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrName.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrName.setBackground(Color.DARK_GRAY);
 		txtrName.setText("Name");
 		contentPane.add(txtrName);
 		
 		JTextArea txtrPhoneNo = new JTextArea();
 		txtrPhoneNo.setForeground(Color.WHITE);
-		txtrPhoneNo.setBounds(95, 245, 106, 23);
+		txtrPhoneNo.setBounds(95, 243, 106, 23);
 		txtrPhoneNo.setEditable(false);
-		txtrPhoneNo.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrPhoneNo.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrPhoneNo.setBackground(Color.DARK_GRAY);
 		txtrPhoneNo.setText("Phone No.");
 		contentPane.add(txtrPhoneNo);
 		
 		JTextArea txtrEmail = new JTextArea();
 		txtrEmail.setForeground(Color.WHITE);
-		txtrEmail.setBounds(95, 305, 59, 22);
+		txtrEmail.setBounds(95, 303, 59, 22);
 		txtrEmail.setEditable(false);
-		txtrEmail.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrEmail.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrEmail.setBackground(Color.DARK_GRAY);
 		txtrEmail.setText("Email");
 		contentPane.add(txtrEmail);
 		
 		JTextArea txtrSetPassword = new JTextArea();
 		txtrSetPassword.setForeground(Color.WHITE);
-		txtrSetPassword.setBounds(95, 365, 139, 22);
+		txtrSetPassword.setBounds(95, 363, 139, 22);
 		txtrSetPassword.setEditable(false);
-		txtrSetPassword.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrSetPassword.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrSetPassword.setBackground(Color.DARK_GRAY);
 		txtrSetPassword.setText("Set Password");
 		contentPane.add(txtrSetPassword);
 		
 		JTextArea txtrShopName = new JTextArea();
 		txtrShopName.setForeground(Color.WHITE);
-		txtrShopName.setBounds(95, 485, 106, 27);
+		txtrShopName.setBounds(95, 483, 113, 27);
 		txtrShopName.setEditable(false);
-		txtrShopName.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrShopName.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrShopName.setBackground(Color.DARK_GRAY);
 		txtrShopName.setText("Shop name");
 		contentPane.add(txtrShopName);
 		
 		JTextArea txtrAddress = new JTextArea();
 		txtrAddress.setForeground(Color.WHITE);
-		txtrAddress.setBounds(95, 545, 133, 25);
+		txtrAddress.setBounds(95, 543, 139, 30);
 		txtrAddress.setEditable(false);
-		txtrAddress.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrAddress.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrAddress.setBackground(Color.DARK_GRAY);
 		txtrAddress.setText("Shop Address");
 		contentPane.add(txtrAddress);
 		
 		JTextArea txtrDistanceFromUpes = new JTextArea();
 		txtrDistanceFromUpes.setForeground(Color.WHITE);
-		txtrDistanceFromUpes.setBounds(95, 425, 173, 27);
+		txtrDistanceFromUpes.setBounds(95, 423, 188, 27);
 		txtrDistanceFromUpes.setEditable(false);
-		txtrDistanceFromUpes.setFont(new Font("Calibri", Font.BOLD, 22));
+		txtrDistanceFromUpes.setFont(new Font("Cambria", Font.BOLD, 21));
 		txtrDistanceFromUpes.setBackground(Color.DARK_GRAY);
 		txtrDistanceFromUpes.setText("Confirm Password");
 		contentPane.add(txtrDistanceFromUpes);
@@ -138,13 +138,13 @@ public class NewShopkeeperSignUp extends JFrame {
 		shopkeeper_name.setAutoscrolls(false);
 		shopkeeper_name.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_name.setBounds(293, 180, 230, 30);
-		shopkeeper_name.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_name.setFont(new Font("Cambria", Font.BOLD, 18));
 		contentPane.add(shopkeeper_name);
 		shopkeeper_name.setColumns(10);
 		
 		shopkeeper_phone = new JTextField();
 		shopkeeper_phone.setForeground(Color.DARK_GRAY);
-		shopkeeper_phone.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_phone.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_phone.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_phone.setBounds(293, 240, 230, 30);
 		shopkeeper_phone.setColumns(10);
@@ -152,7 +152,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		
 		shopkeeper_email = new JTextField();
 		shopkeeper_email.setForeground(Color.DARK_GRAY);
-		shopkeeper_email.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_email.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_email.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_email.setBounds(293, 300, 230, 30);
 		shopkeeper_email.setColumns(10);
@@ -160,7 +160,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		
 		shopkeeper_shop_name = new JTextField();
 		shopkeeper_shop_name.setForeground(Color.DARK_GRAY);
-		shopkeeper_shop_name.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_shop_name.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_shop_name.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_shop_name.setBounds(293, 480, 230, 30);
 		shopkeeper_shop_name.setColumns(10);
@@ -168,7 +168,7 @@ public class NewShopkeeperSignUp extends JFrame {
 		
 		shopkeeper_shop_address = new JTextField();
 		shopkeeper_shop_address.setForeground(Color.DARK_GRAY);
-		shopkeeper_shop_address.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_shop_address.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_shop_address.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_shop_address.setBounds(293, 540, 230, 30);
 		shopkeeper_shop_address.setColumns(10);
@@ -254,16 +254,16 @@ public class NewShopkeeperSignUp extends JFrame {
 		btnNewButton.setBorder(null);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(SystemColor.textHighlight);
-		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 28));
+		btnNewButton.setFont(new Font("Cambria", Font.BOLD, 27));
 		contentPane.add(btnNewButton);
 		
 		JTextArea txtrCreateAccount = new JTextArea();
 		txtrCreateAccount.setForeground(Color.WHITE);
-		txtrCreateAccount.setBounds(92, 87, 307, 40);
+		txtrCreateAccount.setBounds(92, 87, 315, 40);
 		txtrCreateAccount.setEditable(false);
-		txtrCreateAccount.setFont(new Font("Calibri", Font.BOLD, 40));
+		txtrCreateAccount.setFont(new Font("Cambria", Font.BOLD, 36));
 		txtrCreateAccount.setBackground(Color.DARK_GRAY);
-		txtrCreateAccount.setText("CREATE ACCOUNT");
+		txtrCreateAccount.setText("CREATE  ACCOUNT");
 		contentPane.add(txtrCreateAccount);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -275,13 +275,13 @@ public class NewShopkeeperSignUp extends JFrame {
 		shopkeeper_password = new JPasswordField();
 		shopkeeper_password.setForeground(Color.DARK_GRAY);
 		shopkeeper_password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		shopkeeper_password.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_password.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_password.setBounds(293, 360, 230, 30);
 		contentPane.add(shopkeeper_password);
 		
 		shopkeeper_confirm_password = new JPasswordField();
 		shopkeeper_confirm_password.setForeground(Color.DARK_GRAY);
-		shopkeeper_confirm_password.setFont(new Font("Calibri", Font.BOLD, 19));
+		shopkeeper_confirm_password.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_confirm_password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		shopkeeper_confirm_password.setBounds(293, 420, 230, 30);
 		contentPane.add(shopkeeper_confirm_password);
