@@ -12,15 +12,28 @@
     student_specialization varchar(20),
     student_year INTEGER(1),
     student_sapid VARCHAR(9)
-	student_degree VARCHAR(10),
-	student_course VARCHAR(10));
+    student_degree VARCHAR(10),
+    student_course VARCHAR(10));
     
 	
     CREATE TABLE shopkeeper_sign_up
-	(shopkeeper_name VARCHAR(20),
+    (shopkeeper_name VARCHAR(20),
 	shopkeeper_phone VARCHAR(10),
 	shopkeeper_email VARCHAR(30),
 	shopkeeper_password VARCHAR(20),
 	shopkeeper_confirm_password VARCHAR(20),
 	shopkeeper_shop_name varchar(30),
 	shopkeeper_shop_address VARCHAR(100));
+
+
+    create table jobs_posted
+	(shopkeeper_email_address varchar(50),
+	job_title varchar(100),
+	job_decription varchar(1000),
+	location varchar(20),
+	stipend varchar(5),
+	distance varchar(2),
+	job_timings_from varchar(10),
+	job_timings_to varchar(10),
+	contact_at varchar(10));
+	
