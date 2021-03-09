@@ -28,11 +28,11 @@
 
     create table jobs_posted
 	(Job_No varchar(50),
-    	Email_Address varchar(50),
+    Email_Address varchar(50),
 	Title varchar(100),
 	Decription varchar(1000),
 	Location varchar(20),
-    	Distance_From_UPES varchar(2),
+    Distance_From_UPES varchar(2),
 	Hourly_Stipend varchar(5),
 	Start_Time varchar(10),
 	End_Time varchar(10),
