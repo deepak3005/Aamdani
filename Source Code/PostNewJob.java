@@ -45,7 +45,6 @@ public class PostNewJob extends JFrame {
 	private JTextField txtJobTimings_1;
 	private JTextField txtFrom_1;
 	private JTextField txtTo_1;
-	private JTextField txtIWantCandidates_1;
 	private JTextField Job_Stipend_Entered;
 	private JTextField Job_Location_Entered;
 	private JTextField Job_Description_Entered;
@@ -97,7 +96,7 @@ public class PostNewJob extends JFrame {
 		txtJobTitle.setFont(new Font("Cambria", Font.BOLD, 20));
 		txtJobTitle.setEditable(false);
 		txtJobTitle.setText("Job Title");
-		txtJobTitle.setBounds(406, 90, 83, 28);
+		txtJobTitle.setBounds(406, 105, 83, 28);
 		contentPane.add(txtJobTitle);
 		txtJobTitle.setColumns(10);
 		
@@ -109,7 +108,7 @@ public class PostNewJob extends JFrame {
 		txtJobDescription_1.setColumns(10);
 		txtJobDescription_1.setBorder(null);
 		txtJobDescription_1.setBackground(Color.DARK_GRAY);
-		txtJobDescription_1.setBounds(406, 150, 152, 28);
+		txtJobDescription_1.setBounds(406, 165, 152, 28);
 		contentPane.add(txtJobDescription_1);
 		
 		txtHourlyStipend = new JTextField();
@@ -120,7 +119,7 @@ public class PostNewJob extends JFrame {
 		txtHourlyStipend.setColumns(10);
 		txtHourlyStipend.setBorder(null);
 		txtHourlyStipend.setBackground(Color.DARK_GRAY);
-		txtHourlyStipend.setBounds(406, 270, 196, 28);
+		txtHourlyStipend.setBounds(406, 285, 196, 28);
 		contentPane.add(txtHourlyStipend);
 		
 		txtJobLocation_1 = new JTextField();
@@ -131,7 +130,7 @@ public class PostNewJob extends JFrame {
 		txtJobLocation_1.setColumns(10);
 		txtJobLocation_1.setBorder(null);
 		txtJobLocation_1.setBackground(Color.DARK_GRAY);
-		txtJobLocation_1.setBounds(406, 210, 119, 28);
+		txtJobLocation_1.setBounds(406, 225, 119, 28);
 		contentPane.add(txtJobLocation_1);
 		
 		txtApproxDistanceFrom = new JTextField();
@@ -142,7 +141,7 @@ public class PostNewJob extends JFrame {
 		txtApproxDistanceFrom.setColumns(10);
 		txtApproxDistanceFrom.setBorder(null);
 		txtApproxDistanceFrom.setBackground(Color.DARK_GRAY);
-		txtApproxDistanceFrom.setBounds(406, 330, 309, 28);
+		txtApproxDistanceFrom.setBounds(406, 345, 309, 28);
 		contentPane.add(txtApproxDistanceFrom);
 		
 		txtJobTimings_1 = new JTextField();
@@ -153,7 +152,7 @@ public class PostNewJob extends JFrame {
 		txtJobTimings_1.setColumns(10);
 		txtJobTimings_1.setBorder(null);
 		txtJobTimings_1.setBackground(Color.DARK_GRAY);
-		txtJobTimings_1.setBounds(406, 390, 129, 28);
+		txtJobTimings_1.setBounds(406, 405, 129, 28);
 		contentPane.add(txtJobTimings_1);
 		
 		txtFrom_1 = new JTextField();
@@ -164,7 +163,7 @@ public class PostNewJob extends JFrame {
 		txtFrom_1.setColumns(10);
 		txtFrom_1.setBorder(null);
 		txtFrom_1.setBackground(Color.DARK_GRAY);
-		txtFrom_1.setBounds(576, 390, 65, 28);
+		txtFrom_1.setBounds(576, 405, 65, 28);
 		contentPane.add(txtFrom_1);
 		
 		txtTo_1 = new JTextField();
@@ -175,40 +174,10 @@ public class PostNewJob extends JFrame {
 		txtTo_1.setColumns(10);
 		txtTo_1.setBorder(null);
 		txtTo_1.setBackground(Color.DARK_GRAY);
-		txtTo_1.setBounds(777, 390, 39, 28);
+		txtTo_1.setBounds(777, 405, 39, 28);
 		contentPane.add(txtTo_1);
 		
-		txtIWantCandidates_1 = new JTextField();
-		txtIWantCandidates_1.setText("I want candidates to contact me at :");
-		txtIWantCandidates_1.setForeground(Color.WHITE);
-		txtIWantCandidates_1.setFont(new Font("Cambria", Font.BOLD, 20));
-		txtIWantCandidates_1.setEditable(false);
-		txtIWantCandidates_1.setColumns(10);
-		txtIWantCandidates_1.setBorder(null);
-		txtIWantCandidates_1.setBackground(Color.DARK_GRAY);
-		txtIWantCandidates_1.setBounds(406, 450, 405, 28);
-		contentPane.add(txtIWantCandidates_1);
-		
-		JRadioButton chckbxNewCheckBox = new JRadioButton("Phone");
-		chckbxNewCheckBox.setForeground(Color.WHITE);
-		chckbxNewCheckBox.setBackground(Color.DARK_GRAY);
-		chckbxNewCheckBox.setFont(new Font("Cambria", Font.BOLD, 15));
-		chckbxNewCheckBox.setBounds(406, 490, 73, 23);
-		chckbxNewCheckBox.setActionCommand("Phone No");
-		chckbxNewCheckBox.setSelected(true);
-		contentPane.add(chckbxNewCheckBox);
-		
-		JRadioButton chckbxEmailId = new JRadioButton("Email");
-		chckbxEmailId.setForeground(Color.WHITE);
-		chckbxEmailId.setFont(new Font("Cambria", Font.BOLD, 15));
-		chckbxEmailId.setBackground(Color.DARK_GRAY);
-		chckbxEmailId.setBounds(520, 490, 65, 23);
-		chckbxEmailId.setActionCommand("Email ID");
-		contentPane.add(chckbxEmailId);
-		
 		final ButtonGroup bg = new ButtonGroup();
-		bg.add(chckbxNewCheckBox);
-		bg.add(chckbxEmailId);
 		
 		JButton btnNewButton = new JButton("Post  Job");
 		btnNewButton.addMouseListener(new MouseAdapter() 
@@ -224,7 +193,6 @@ public class PostNewJob extends JFrame {
                 String JobDistance = Job_Distance_Entered.getText();
                 String JobTimingsFrom = (String)Job_Timing_From_Entered.getSelectedItem();
                 String JobTimingsTo = (String)Job_Timing_To_Entered.getSelectedItem();
-                String JobContactAt = bg.getSelection().getActionCommand();;
                 
                 if (JobTitle.length()==0||JobDescription.length()==0||JobLocation.length()==0||JobStipend.length()==0||JobDistance.length()==0) 
                 {
@@ -237,12 +205,29 @@ public class PostNewJob extends JFrame {
                 	{
                         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
                         
-                        String query = "INSERT INTO jobs_posted values('" + ShopkeeperEmail + "','" + JobTitle + "','" + JobDescription + "','" +
-                        		JobLocation + "','" + JobStipend + "','" + JobDistance + "','" + JobTimingsFrom + "','" + JobTimingsTo + "','" + JobContactAt + "')";
-
                         Statement sta = connection.createStatement();
                         
-                        sta.executeUpdate(query);
+                        String query1 = "SELECT * FROM jobs_posted where Email_Address ='" + ShopkeeperEmail +"'";
+                        ResultSet rs = sta.executeQuery(query1);
+                        int count1 = 1;
+                        if(rs.next()==false)
+                        {
+                        	count1 = 1;
+                        }
+                        else
+                        {
+                        	//count1 = rs.getInt(1) + 1;
+                        	do
+                        	{
+                        		count1++;
+                        	}while(rs.next()!=false);
+                        }
+                        
+                        String query2 = "INSERT INTO jobs_posted values('" + count1 + "','" + ShopkeeperEmail + "','" + JobTitle + "','" + JobDescription + "','" +
+                        		JobLocation + "','" + JobDistance + "','" + JobStipend + "','" + JobTimingsFrom + "','" + JobTimingsTo + "')";
+                        
+                        sta.executeUpdate(query2);
+                        
                         connection.close();
                         
                     }
@@ -263,7 +248,7 @@ public class PostNewJob extends JFrame {
 		btnNewButton.setFont(new Font("Cambria", Font.BOLD, 28));
 		btnNewButton.setBorder(null);
 		btnNewButton.setBackground(new Color(65, 105, 225));
-		btnNewButton.setBounds(576, 551, 190, 53);
+		btnNewButton.setBounds(576, 525, 190, 53);
 		contentPane.add(btnNewButton);
 		
 		Job_Stipend_Entered = new JTextField();
@@ -282,28 +267,28 @@ public class PostNewJob extends JFrame {
 		});
 		Job_Stipend_Entered.setFont(new Font("Cambria", Font.BOLD, 16));
 		Job_Stipend_Entered.setColumns(10);
-		Job_Stipend_Entered.setBounds(624, 270, 283, 28);
+		Job_Stipend_Entered.setBounds(624, 285, 283, 28);
 		contentPane.add(Job_Stipend_Entered);
 		
 		Job_Location_Entered = new JTextField();
 		Job_Location_Entered.setCaretColor(Color.DARK_GRAY);
 		Job_Location_Entered.setFont(new Font("Cambria", Font.BOLD, 16));
 		Job_Location_Entered.setColumns(10);
-		Job_Location_Entered.setBounds(624, 210, 283, 28);
+		Job_Location_Entered.setBounds(624, 225, 283, 28);
 		contentPane.add(Job_Location_Entered);
 		
 		Job_Description_Entered = new JTextField();
 		Job_Description_Entered.setCaretColor(Color.DARK_GRAY);
 		Job_Description_Entered.setFont(new Font("Cambria", Font.BOLD, 16));
 		Job_Description_Entered.setColumns(10);
-		Job_Description_Entered.setBounds(624, 150, 283, 28);
+		Job_Description_Entered.setBounds(624, 165, 283, 28);
 		contentPane.add(Job_Description_Entered);
 		
 		Job_Title_Entered = new JTextField();
 		Job_Title_Entered.setCaretColor(Color.DARK_GRAY);
 		Job_Title_Entered.setFont(new Font("Cambria", Font.BOLD, 16));
 		Job_Title_Entered.setColumns(10);
-		Job_Title_Entered.setBounds(624, 90, 283, 28);
+		Job_Title_Entered.setBounds(624, 105, 283, 28);
 		contentPane.add(Job_Title_Entered);
 		
 		Job_Distance_Entered = new JTextField();
@@ -322,33 +307,33 @@ public class PostNewJob extends JFrame {
 		});
 		Job_Distance_Entered.setFont(new Font("Cambria", Font.BOLD, 16));
 		Job_Distance_Entered.setColumns(10);
-		Job_Distance_Entered.setBounds(736, 330, 171, 28);
+		Job_Distance_Entered.setBounds(736, 345, 171, 28);
 		contentPane.add(Job_Distance_Entered);
 		
 		Job_Timing_From_Entered = new JComboBox();
 		Job_Timing_From_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
 		Job_Timing_From_Entered.setMaximumRowCount(24);
 		Job_Timing_From_Entered.setFont(new Font("Cambria", Font.PLAIN, 15));
-		Job_Timing_From_Entered.setBounds(655, 391, 73, 28);
+		Job_Timing_From_Entered.setBounds(655, 406, 73, 28);
 		contentPane.add(Job_Timing_From_Entered);
 		
 		Job_Timing_To_Entered = new JComboBox();
 		Job_Timing_To_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
 		Job_Timing_To_Entered.setMaximumRowCount(24);
 		Job_Timing_To_Entered.setFont(new Font("Cambria", Font.PLAIN, 15));
-		Job_Timing_To_Entered.setBounds(834, 391, 73, 28);
+		Job_Timing_To_Entered.setBounds(834, 406, 73, 28);
 		contentPane.add(Job_Timing_To_Entered);
 		
 		lblNewLabel = new JLabel("");
 		Image img1 = new ImageIcon(this.getClass().getResource("/postjob2.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img1));
-		lblNewLabel.setBounds(58, 315, 286, 201);
+		lblNewLabel.setBounds(58, 345, 286, 201);
 		contentPane.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("");
 		Image img2 = new ImageIcon(this.getClass().getResource("/postjobfirst.png")).getImage();
 		lblNewLabel_1.setIcon(new ImageIcon(img2));
-		lblNewLabel_1.setBounds(58, 88, 286, 201);
+		lblNewLabel_1.setBounds(58, 118, 286, 201);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
