@@ -5,14 +5,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -28,12 +33,17 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import javax.swing.table.TableColumn;
 
 public class ShopkeeperDashboard extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
+	static String SelectedRowTitle,SelectedRowLocation,SelectedRowStipend,SelectedRowDistance,SelectedRowStart,SelectedRowEnd;
 
 	/**
 	 * Launch the application.
@@ -77,6 +87,29 @@ public class ShopkeeperDashboard extends JFrame {
         }
 		return DynamicName;
 	}
+	
+	public void displayTable()
+	{
+		String getEmailId = PostJobButtonClicked.shopkeeper_email_entered.getText();
+		
+		try 
+        {
+        	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+               
+            String query2 = "SELECT Title,Location,Distance_From_UPES,Hourly_Stipend,Start_Time,End_Time FROM jobs_posted WHERE Email_Address='"+getEmailId+"'";
+
+            Statement sta = connection.createStatement();
+            ResultSet rs2 = sta.executeQuery(query2);
+            
+            table_1.setModel(DbUtils.resultSetToTableModel(rs2));
+            
+            connection.close();
+        }
+        catch (Exception exception) 
+        {
+            exception.printStackTrace();
+        }
+	}
 
 	/**
 	 * Create the frame.
@@ -99,7 +132,7 @@ public class ShopkeeperDashboard extends JFrame {
 		txtrHelloDeepak.setBackground(Color.DARK_GRAY);
 		txtrHelloDeepak.setText("Hello "+ getDynamicName());
 		//PostJobButtonClicked.shopkeeper_email_entered.getText());
-		txtrHelloDeepak.setBounds(70, 55, 387, 34);
+		txtrHelloDeepak.setBounds(70, 45, 387, 34);
 		contentPane.add(txtrHelloDeepak);
 		
 		JTextArea txtrThisIsYour = new JTextArea();
@@ -108,7 +141,7 @@ public class ShopkeeperDashboard extends JFrame {
 		txtrThisIsYour.setFont(new Font("Cambria", Font.BOLD, 25));
 		txtrThisIsYour.setBackground(Color.DARK_GRAY);
 		txtrThisIsYour.setText("Welcome to your Aamdani Dashboard");
-		txtrThisIsYour.setBounds(70, 100, 448, 34);
+		txtrThisIsYour.setBounds(70, 85, 448, 34);
 		contentPane.add(txtrThisIsYour);
 		
 		JTextArea txtrGoAhead = new JTextArea();
@@ -117,11 +150,12 @@ public class ShopkeeperDashboard extends JFrame {
 		txtrGoAhead.setFont(new Font("Cambria", Font.BOLD, 25));
 		txtrGoAhead.setBackground(Color.DARK_GRAY);
 		txtrGoAhead.setText("Go ahead!");
-		txtrGoAhead.setBounds(70, 140, 118, 34);
+		txtrGoAhead.setBounds(70, 125, 118, 34);
 		contentPane.add(txtrGoAhead);
 		
 		table = new JTable();
 		table.setBounds(98, 284, 135, -61);
+		table.setBackground(Color.DARK_GRAY);
 		contentPane.add(table);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -156,58 +190,127 @@ public class ShopkeeperDashboard extends JFrame {
 			}
 		});
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setBounds(405, 220, 176, 38);
+		btnNewButton.setBounds(70, 200, 176, 38);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(70, 300, 847, 291);
+		scrollPane.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+				DefaultTableModel model = (DefaultTableModel)table_1.getModel();
+				int SelectedRowIndex = table_1.getSelectedRow();
+				JOptionPane.showMessageDialog(null, model.getValueAt(SelectedRowIndex, 0));
+				
+			}
+		});
+		scrollPane.setBounds(70, 280, 847, 235);
+		scrollPane.setBackground(Color.DARK_GRAY);
 		contentPane.add(scrollPane);
 		
 		table_1 = new JTable();
 		scrollPane.setViewportView(table_1);
-		table_1.setBackground(Color.LIGHT_GRAY);
+		table_1.setBackground(Color.cyan);
+		table_1.setForeground(Color.black);
+		table_1.setRowHeight(40);
+		Font headerFont1 = new Font("Cambria", Font.BOLD, 17);
+	    table_1.setFont(headerFont1);
+	    table_1.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DefaultTableModel model = (DefaultTableModel)table_1.getModel();
+				int SelectedRowIndex = table_1.getSelectedRow();
+				SelectedRowTitle = model.getValueAt(SelectedRowIndex, 0).toString();
+				SelectedRowLocation = model.getValueAt(SelectedRowIndex, 1).toString();
+				SelectedRowDistance = model.getValueAt(SelectedRowIndex, 2).toString();
+				SelectedRowStipend = model.getValueAt(SelectedRowIndex, 3).toString();
+				SelectedRowStart = model.getValueAt(SelectedRowIndex, 4).toString();
+				SelectedRowEnd = model.getValueAt(SelectedRowIndex, 5).toString();
+			}
+		});
+		displayTable();
 		
-		JButton btnNewButton_1 = new JButton("Update Table");
-		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.addMouseListener(new MouseAdapter() 
+		JTableHeader tableHeader = table_1.getTableHeader();
+	    tableHeader.setBackground(Color.BLUE);
+	    tableHeader.setForeground(Color.white);
+	    Font headerFont = new Font("Cambria", Font.BOLD, 12);
+	    tableHeader.setFont(headerFont);
+	    tableHeader.setPreferredSize(new Dimension(50,50));
+		
+		JButton btnViewDescription = new JButton("View  Description");
+		btnViewDescription.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+				try 
+            	{
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+                    
+                    Statement sta = connection.createStatement();
+                    
+                    String query1 = "SELECT Decription FROM jobs_posted where Email_Address ='" + PostJobButtonClicked.shopkeeper_email_entered.getText() + "' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
+                    
+                    ResultSet rs = sta.executeQuery(query1);
+                    
+                    rs.next();
+                    
+                    JOptionPane.showMessageDialog(null, new JLabel(rs.getString(1), JLabel.CENTER), "Job Description", JOptionPane.PLAIN_MESSAGE);
+                    
+                    connection.close();
+                    
+                }
+                    catch (Exception exception) 
+            	{
+                    exception.printStackTrace();
+                }
+				
+			}
+		});
+		btnViewDescription.setForeground(Color.WHITE);
+		btnViewDescription.setFont(new Font("Cambria", Font.BOLD, 20));
+		btnViewDescription.setBorder(null);
+		btnViewDescription.setBackground(new Color(65, 105, 225));
+		btnViewDescription.setBounds(70, 560, 180, 38);
+		contentPane.add(btnViewDescription);
+		
+		JButton btnEditJob = new JButton("Edit  Job");
+		btnEditJob.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
 				dispose();
-				ShopkeeperDashboard sd5 = new ShopkeeperDashboard();
-				sd5.setVisible(true);
+				EditJob ed = new EditJob();
+				ed.setVisible(true);
 			}
 		});
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setFont(new Font("Cambria", Font.BOLD, 20));
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setBackground(new Color(65, 105, 225));
-		btnNewButton_1.setBounds(741, 220, 176, 38);
-		contentPane.add(btnNewButton_1);
+		btnEditJob.setForeground(Color.WHITE);
+		btnEditJob.setFont(new Font("Cambria", Font.BOLD, 20));
+		btnEditJob.setBorder(null);
+		btnEditJob.setBackground(new Color(65, 105, 225));
+		btnEditJob.setBounds(407, 560, 176, 38);
+		contentPane.add(btnEditJob);
 		
-		JButton btnViewJobs = new JButton("View Jobs");
-		btnViewJobs.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnViewJobs.addMouseListener(new MouseAdapter() 
+		JButton btnViewJobs_3 = new JButton("Delete  Job");
+		btnViewJobs_3.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
-				String getEmailId = PostJobButtonClicked.shopkeeper_email_entered.getText();
-				
 				try 
 		        {
 		        	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
-		               
-		            String query2 = "SELECT job_title,job_decription,location,stipend,distance,job_timings_from,job_timings_to,contact_at FROM jobs_posted WHERE shopkeeper_email_address='"+getEmailId+"'";
-
+		            String query1 = "DELETE FROM jobs_posted WHERE Email_Address='"+PostJobButtonClicked.shopkeeper_email_entered.getText()+"' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
 		            Statement sta = connection.createStatement();
-		            ResultSet rs2 = sta.executeQuery(query2);
-		            
-		            table_1.setModel(DbUtils.resultSetToTableModel(rs2));
-		            
+		            sta.executeUpdate(query1);
 		            connection.close();
+		            displayTable();
 		        }
 		        catch (Exception exception) 
 		        {
@@ -215,11 +318,11 @@ public class ShopkeeperDashboard extends JFrame {
 		        }
 			}
 		});
-		btnViewJobs.setForeground(Color.WHITE);
-		btnViewJobs.setFont(new Font("Cambria", Font.BOLD, 20));
-		btnViewJobs.setBorder(null);
-		btnViewJobs.setBackground(new Color(65, 105, 225));
-		btnViewJobs.setBounds(70, 220, 176, 38);
-		contentPane.add(btnViewJobs);
+		btnViewJobs_3.setForeground(Color.WHITE);
+		btnViewJobs_3.setFont(new Font("Cambria", Font.BOLD, 20));
+		btnViewJobs_3.setBorder(null);
+		btnViewJobs_3.setBackground(new Color(65, 105, 225));
+		btnViewJobs_3.setBounds(741, 560, 176, 38);
+		contentPane.add(btnViewJobs_3);
 	}
 }
