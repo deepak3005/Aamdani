@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
 public class FindJobButtonClicked extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField student_email_entered;
+	static JTextField student_email_entered;
 	private JPasswordField student_password_entered;
 
 	/**
@@ -90,7 +90,9 @@ public class FindJobButtonClicked extends JFrame {
                     }
                     else
                     {
-                    	JOptionPane.showMessageDialog(null, "Congrats ! You exist !");
+                    	dispose();
+                    	StudentDashboard sd5 = new StudentDashboard();
+                    	sd5.setVisible(true);
                     }
                     
                 }
