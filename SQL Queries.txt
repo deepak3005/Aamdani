@@ -35,5 +35,4 @@
     Distance_From_UPES varchar(2),
 	Hourly_Stipend varchar(5),
 	Start_Time varchar(10),
-	End_Time varchar(10),
-	Contact_At varchar(10));
+	End_Time varchar(10));
