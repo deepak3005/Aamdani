@@ -15,6 +15,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -36,6 +39,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollBar;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 public class NewStudentSignUp extends JFrame {
 
@@ -81,6 +85,9 @@ public class NewStudentSignUp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JTextArea txtrName = new JTextArea();
 		txtrName.setForeground(Color.WHITE);
@@ -155,6 +162,18 @@ public class NewStudentSignUp extends JFrame {
 		student_name.setColumns(10);
 		
 		student_phone = new JTextField();
+		student_phone.addKeyListener(new KeyAdapter() 
+		{
+			@Override
+			public void keyTyped(KeyEvent e) 
+			{
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) 
+				{
+					e.consume();
+				}
+			}
+		});
 		student_phone.setForeground(Color.DARK_GRAY);
 		student_phone.setFont(new Font("Calibri", Font.BOLD, 18));
 		student_phone.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -201,17 +220,17 @@ public class NewStudentSignUp extends JFrame {
                 msg += " \n";
                 if (len != 10) 
                 {
-                    JOptionPane.showMessageDialog(null, "Enter a valid mobile number");
+                    JOptionPane.showMessageDialog(null, new JLabel("Enter a valid phone number !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 else if (stuName.length()==0||stuPhone.length()==0||stuEmail.length()==0||stuPswd.length()==0||stuConfirmpswd.length()==0||stuDegree.length()==0||stuCourse.length()==0||stuYear.length()==0||stuSapid.length()==0) 
                 {
-                    JOptionPane.showMessageDialog(null, "Please fill out all the fields.");
+                    JOptionPane.showMessageDialog(null, new JLabel("Please fill out all the fields.", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 else if (stuPswd.compareTo(stuConfirmpswd)!=0) 
                 {
-                    JOptionPane.showMessageDialog(null, "Password did not match with the confirmed password !");
+                    JOptionPane.showMessageDialog(null, new JLabel("Password did not match with the confirmed password !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 else
@@ -236,13 +255,17 @@ public class NewStudentSignUp extends JFrame {
                         	int x = sta.executeUpdate(query2);
                             if (x != 0) 
                             {
-                            	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created.");
+                            	JOptionPane.showMessageDialog(null, new JLabel("Welcome, " + msg + "Your account is sucessfully created.", JLabel.CENTER), "Success", JOptionPane.PLAIN_MESSAGE);
                                 connection.close();
+                                
+                                dispose();
+                				FindJobButtonClicked pjbc = new FindJobButtonClicked();
+                				pjbc.setVisible(true);
                             } 
                         }
                         else
                         {
-                        	JOptionPane.showMessageDialog(null, "This email already exists !");
+                        	JOptionPane.showMessageDialog(null, new JLabel("This email already exists !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         
                     }
@@ -250,9 +273,7 @@ public class NewStudentSignUp extends JFrame {
                         exception.printStackTrace();
                     }
              
-    				dispose();
-    				FindJobButtonClicked pjbc = new FindJobButtonClicked();
-    				pjbc.setVisible(true);
+    				
                 }
 			}	
 		});
@@ -311,6 +332,18 @@ public class NewStudentSignUp extends JFrame {
 		contentPane.add(txtrYearOfStudy);
 		
 		student_year = new JTextField();
+		student_year.addKeyListener(new KeyAdapter() 
+		{
+			@Override
+			public void keyTyped(KeyEvent e) 
+			{
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) 
+				{
+					e.consume();
+				}
+			}
+		});
 		student_year.setForeground(Color.DARK_GRAY);
 		student_year.setFont(new Font("Calibri", Font.BOLD, 18));
 		student_year.setColumns(10);
@@ -337,6 +370,18 @@ public class NewStudentSignUp extends JFrame {
 		contentPane.add(txtrSpecialization);
 		
 		student_sapid = new JTextField();
+		student_sapid.addKeyListener(new KeyAdapter() 
+		{
+			@Override
+			public void keyTyped(KeyEvent e) 
+			{
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) 
+				{
+					e.consume();
+				}
+			}
+		});
 		student_sapid.setForeground(Color.DARK_GRAY);
 		student_sapid.setFont(new Font("Calibri", Font.BOLD, 18));
 		student_sapid.setColumns(10);
