@@ -15,10 +15,14 @@ import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
@@ -34,11 +38,15 @@ public class SecondFrame extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+				try 
+				{
 					SecondFrame frame = new SecondFrame();
 					frame.setVisible(true);
-					//frame.;
-				} catch (Exception e) {
+					
+					
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -58,6 +66,9 @@ public class SecondFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JButton btnNewButton = new JButton("POST  A  JOB");
 		btnNewButton.addActionListener(new ActionListener() {
