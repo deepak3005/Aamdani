@@ -24,11 +24,15 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JEditorPane;
 import java.awt.Cursor;
+import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
 
 public class FindJobButtonClicked extends JFrame {
@@ -67,6 +71,9 @@ public class FindJobButtonClicked extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JButton btnNewButton = new JButton("Sign In");
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -86,7 +93,7 @@ public class FindJobButtonClicked extends JFrame {
                     ResultSet rs = stmt.executeQuery(query);
                     if(rs.next()==false)
                     {
-                    	JOptionPane.showMessageDialog(null, "Incorrect email or password !");
+                    	JOptionPane.showMessageDialog(null, new JLabel("Incorrect email or password !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                     }
                     else
                     {
