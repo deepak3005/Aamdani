@@ -32,7 +32,7 @@
 	Title varchar(100),
 	Decription varchar(1000),
 	Location varchar(20),
-    Distance_From_UPES varchar(2),
-	Hourly_Stipend varchar(5),
+    Distance_From_UPES_In_KMs integer,
+	Hourly_Stipend_INR integer,
 	Start_Time varchar(10),
 	End_Time varchar(10));
