@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -31,6 +32,8 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextField;
@@ -96,7 +99,7 @@ public class ShopkeeperDashboard extends JFrame {
         {
         	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
                
-            String query2 = "SELECT Title,Location,Distance_From_UPES,Hourly_Stipend,Start_Time,End_Time FROM jobs_posted WHERE Email_Address='"+getEmailId+"'";
+            String query2 = "SELECT Title,Location,Distance_From_UPES_In_KMs,Hourly_Stipend_INR,Start_Time,End_Time FROM jobs_posted WHERE Email_Address='"+getEmailId+"'";
 
             Statement sta = connection.createStatement();
             ResultSet rs2 = sta.executeQuery(query2);
@@ -109,6 +112,21 @@ public class ShopkeeperDashboard extends JFrame {
         {
             exception.printStackTrace();
         }
+		
+		
+		TableColumn col1 = table_1.getColumnModel().getColumn(0);
+	    col1.setPreferredWidth(150);
+	    TableColumn col2 = table_1.getColumnModel().getColumn(1);
+	    col2.setPreferredWidth(210);
+	    TableColumn col3 = table_1.getColumnModel().getColumn(2);
+	    col3.setPreferredWidth(265);
+	    TableColumn col4 = table_1.getColumnModel().getColumn(3);
+	    col4.setPreferredWidth(190);
+	    TableColumn col5 = table_1.getColumnModel().getColumn(4);
+	    col5.setPreferredWidth(110);
+	    TableColumn col6 = table_1.getColumnModel().getColumn(5);
+	    col6.setPreferredWidth(110);
+		
 	}
 
 	/**
@@ -124,6 +142,9 @@ public class ShopkeeperDashboard extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JTextArea txtrHelloDeepak = new JTextArea();
 		txtrHelloDeepak.setEditable(false);
@@ -199,11 +220,8 @@ public class ShopkeeperDashboard extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
 				DefaultTableModel model = (DefaultTableModel)table_1.getModel();
 				int SelectedRowIndex = table_1.getSelectedRow();
-				JOptionPane.showMessageDialog(null, model.getValueAt(SelectedRowIndex, 0));
-				
 			}
 		});
 		scrollPane.setBounds(70, 280, 847, 235);
@@ -212,10 +230,17 @@ public class ShopkeeperDashboard extends JFrame {
 		
 		table_1 = new JTable();
 		scrollPane.setViewportView(table_1);
-		table_1.setBackground(Color.cyan);
+		table_1.setBackground(Color.white);
 		table_1.setForeground(Color.black);
+		table_1.setGridColor(Color.black);
 		table_1.setRowHeight(40);
-		Font headerFont1 = new Font("Cambria", Font.BOLD, 17);
+		table_1.setAutoResizeMode(0);
+		
+		DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+	    r.setHorizontalAlignment(JLabel.CENTER);
+	    table_1.setDefaultRenderer(Object.class,r);
+		
+		Font headerFont1 = new Font("Cambria", Font.BOLD, 18);
 	    table_1.setFont(headerFont1);
 	    table_1.addMouseListener(new MouseAdapter() 
 		{
@@ -235,11 +260,24 @@ public class ShopkeeperDashboard extends JFrame {
 		displayTable();
 		
 		JTableHeader tableHeader = table_1.getTableHeader();
-	    tableHeader.setBackground(Color.BLUE);
+	    tableHeader.setBackground(Color.black);
 	    tableHeader.setForeground(Color.white);
-	    Font headerFont = new Font("Cambria", Font.BOLD, 12);
+	    Font headerFont = new Font("Cambria", Font.BOLD, 18);
 	    tableHeader.setFont(headerFont);
 	    tableHeader.setPreferredSize(new Dimension(50,50));
+	    
+	    TableColumn col1 = table_1.getColumnModel().getColumn(0);
+	    col1.setPreferredWidth(150);
+	    TableColumn col2 = table_1.getColumnModel().getColumn(1);
+	    col2.setPreferredWidth(210);
+	    TableColumn col3 = table_1.getColumnModel().getColumn(2);
+	    col3.setPreferredWidth(265);
+	    TableColumn col4 = table_1.getColumnModel().getColumn(3);
+	    col4.setPreferredWidth(190);
+	    TableColumn col5 = table_1.getColumnModel().getColumn(4);
+	    col5.setPreferredWidth(110);
+	    TableColumn col6 = table_1.getColumnModel().getColumn(5);
+	    col6.setPreferredWidth(110);
 		
 		JButton btnViewDescription = new JButton("View  Description");
 		btnViewDescription.addMouseListener(new MouseAdapter() 
@@ -248,28 +286,34 @@ public class ShopkeeperDashboard extends JFrame {
 			public void mouseClicked(MouseEvent e) 
 			{
 				
-				try 
-            	{
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
-                    
-                    Statement sta = connection.createStatement();
-                    
-                    String query1 = "SELECT Decription FROM jobs_posted where Email_Address ='" + PostJobButtonClicked.shopkeeper_email_entered.getText() + "' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
-                    
-                    ResultSet rs = sta.executeQuery(query1);
-                    
-                    rs.next();
-                    
-                    JOptionPane.showMessageDialog(null, new JLabel(rs.getString(1), JLabel.CENTER), "Job Description", JOptionPane.PLAIN_MESSAGE);
-                    
-                    connection.close();
-                    
-                }
-                    catch (Exception exception) 
-            	{
-                    exception.printStackTrace();
-                }
-				
+				if(SelectedRowTitle==null)
+				{
+					JOptionPane.showMessageDialog(null, new JLabel("Please select a job to view it's description !", JLabel.CENTER), "No job selected", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					try 
+	            	{
+	                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+	                    
+	                    Statement sta = connection.createStatement();
+	                    
+	                    String query1 = "SELECT Decription FROM jobs_posted where Email_Address ='" + PostJobButtonClicked.shopkeeper_email_entered.getText() + "' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES_In_KMs ='"+SelectedRowDistance+"' and Hourly_Stipend_INR ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
+	                    
+	                    ResultSet rs = sta.executeQuery(query1);
+	                    
+	                    rs.next();
+	                    
+	                    JOptionPane.showMessageDialog(null, new JLabel(rs.getString(1), JLabel.CENTER), "Job Description", JOptionPane.PLAIN_MESSAGE);
+	                    
+	                    connection.close();
+	                    
+	                }
+	                    catch (Exception exception) 
+	            	{
+	                    exception.printStackTrace();
+	                }
+				}
 			}
 		});
 		btnViewDescription.setForeground(Color.WHITE);
@@ -285,9 +329,16 @@ public class ShopkeeperDashboard extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				dispose();
-				EditJob ed = new EditJob();
-				ed.setVisible(true);
+				if(SelectedRowTitle==null)
+				{
+					JOptionPane.showMessageDialog(null, new JLabel("Please select a job to edit !", JLabel.CENTER), "No job selected", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					dispose();
+					EditJob ed = new EditJob();
+					ed.setVisible(true);
+				}
 			}
 		});
 		btnEditJob.setForeground(Color.WHITE);
@@ -303,19 +354,26 @@ public class ShopkeeperDashboard extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				try 
-		        {
-		        	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
-		            String query1 = "DELETE FROM jobs_posted WHERE Email_Address='"+PostJobButtonClicked.shopkeeper_email_entered.getText()+"' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
-		            Statement sta = connection.createStatement();
-		            sta.executeUpdate(query1);
-		            connection.close();
-		            displayTable();
-		        }
-		        catch (Exception exception) 
-		        {
-		            exception.printStackTrace();
-		        }
+				if(SelectedRowTitle==null)
+				{
+					JOptionPane.showMessageDialog(null, new JLabel("Please select a job to delete !", JLabel.CENTER), "No job selected", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					try 
+			        {
+			        	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+			            String query1 = "DELETE FROM jobs_posted WHERE Email_Address='"+PostJobButtonClicked.shopkeeper_email_entered.getText()+"' and Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES_In_KMs ='"+SelectedRowDistance+"' and Hourly_Stipend_INR ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
+			            Statement sta = connection.createStatement();
+			            sta.executeUpdate(query1);
+			            connection.close();
+			            displayTable();
+			        }
+			        catch (Exception exception) 
+			        {
+			            exception.printStackTrace();
+			        }
+				}
 			}
 		});
 		btnViewJobs_3.setForeground(Color.WHITE);
