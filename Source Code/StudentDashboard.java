@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -16,11 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 import net.proteanit.sql.DbUtils;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.DefaultComboBoxModel;
@@ -32,6 +36,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+
+
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 import java.sql.Timestamp;  
 
@@ -139,7 +150,7 @@ public class StudentDashboard extends JFrame {
 			
         	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
                
-            String query2 = "SELECT Title,Location,Distance_From_UPES,Hourly_Stipend,Start_Time,End_Time FROM jobs_posted WHERE Distance_From_UPES<='"+update_md+"' and (Hourly_Stipend>='"+update_mins+"') and (Hourly_Stipend<='"+update_maxs+"') and (Start_Time>='"+StartTimeEntered.getSelectedItem()+"') and (End_Time<='"+EndTimeEntered.getSelectedItem()+"')";
+            String query2 = "SELECT Title,Location,Distance_From_UPES_In_KMs,Hourly_Stipend_INR,Start_Time,End_Time FROM jobs_posted WHERE Distance_From_UPES_In_KMs<='"+update_md+"' and (Hourly_Stipend_INR>='"+update_mins+"') and (Hourly_Stipend_INR<='"+update_maxs+"') and (Start_Time>='"+StartTimeEntered.getSelectedItem()+"') and (End_Time<='"+EndTimeEntered.getSelectedItem()+"')";
 
             Statement sta = connection.createStatement();
             ResultSet rs2 = sta.executeQuery(query2);
@@ -147,6 +158,22 @@ public class StudentDashboard extends JFrame {
             table.setModel(DbUtils.resultSetToTableModel(rs2));
             
             connection.close();
+            
+            
+            
+            TableColumn col1 = table.getColumnModel().getColumn(0);
+    	    col1.setPreferredWidth(150);
+    	    TableColumn col2 = table.getColumnModel().getColumn(1);
+    	    col2.setPreferredWidth(210);
+    	    TableColumn col3 = table.getColumnModel().getColumn(2);
+    	    col3.setPreferredWidth(265);
+    	    TableColumn col4 = table.getColumnModel().getColumn(3);
+    	    col4.setPreferredWidth(190);
+    	    TableColumn col5 = table.getColumnModel().getColumn(4);
+    	    col5.setPreferredWidth(110);
+    	    TableColumn col6 = table.getColumnModel().getColumn(5);
+    	    col6.setPreferredWidth(110);
+            
         }
         catch (Exception exception) 
         {
@@ -169,7 +196,9 @@ public class StudentDashboard extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JTextArea txtrHelloDeepak = new JTextArea();
 		txtrHelloDeepak.setEditable(false);
@@ -392,29 +421,34 @@ public class StudentDashboard extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
-				try 
-            	{
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
-                    
-                    Statement sta = connection.createStatement();
-                    
-                    String query1 = "SELECT Decription FROM jobs_posted where Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
-                    
-                    ResultSet rs = sta.executeQuery(query1);
-                    
-                    rs.next();
-                    
-                    JOptionPane.showMessageDialog(null, new JLabel(rs.getString(1), JLabel.CENTER), "Job Description", JOptionPane.PLAIN_MESSAGE);
-                    
-                    connection.close();
-                    
-                }
-                    catch (Exception exception) 
-            	{
-                    exception.printStackTrace();
-                }
-				
+				if(SelectedRowTitle==null)
+				{
+					JOptionPane.showMessageDialog(null, new JLabel("Please select a job to view it's description !", JLabel.CENTER), "No job selected", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					try 
+	            	{
+	                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+	                    
+	                    Statement sta = connection.createStatement();
+	                    
+	                    String query1 = "SELECT Decription FROM jobs_posted where Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES_In_KMs ='"+SelectedRowDistance+"' and Hourly_Stipend_INR ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
+	                    
+	                    ResultSet rs = sta.executeQuery(query1);
+	                    
+	                    rs.next();
+	                    
+	                    JOptionPane.showMessageDialog(null, new JLabel(rs.getString(1), JLabel.CENTER), "Job Description", JOptionPane.PLAIN_MESSAGE);
+	                    
+	                    connection.close();
+	                    
+	                }
+	                    catch (Exception exception) 
+	            	{
+	                    exception.printStackTrace();
+	                }
+				}
 			}
 		});
 		btnViewDescription.setForeground(Color.WHITE);
@@ -430,45 +464,50 @@ public class StudentDashboard extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
-				try 
-            	{
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
-                    
-                    Statement sta = connection.createStatement();
-                    
-                    String showContact = null;
-                    String foundShopEmail = null;
-                    
-           
-                    	String query2 = "SELECT Email_Address FROM jobs_posted where Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES ='"+SelectedRowDistance+"' and Hourly_Stipend ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
-                    
-                    	Statement sta2 = connection.createStatement();
-                    	ResultSet rs2 = sta2.executeQuery(query2);
-                        
-                        rs2.next();
-                        
-                        foundShopEmail = rs2.getString(1);
-                        
-                        String query3 = "SELECT shopkeeper_phone FROM shopkeeper_sign_up where shopkeeper_email ='"+foundShopEmail+"'";
-                        
-                    	Statement sta3 = connection.createStatement();
-                    	ResultSet rs3 = sta3.executeQuery(query3);
-                        
-                        rs3.next();
-                        
-                        showContact = rs3.getString(1);
-                    
-                    JOptionPane.showMessageDialog(null, new JLabel("Contact employer at : "+showContact, JLabel.CENTER), "Apply for job", JOptionPane.PLAIN_MESSAGE);
-                    
-                    connection.close();
-                    
-                }
-                    catch (Exception exception) 
-            	{
-                    exception.printStackTrace();
-                }
-				
+				if(SelectedRowTitle==null)
+				{
+					JOptionPane.showMessageDialog(null, new JLabel("Please select a job you want to apply for !", JLabel.CENTER), "No job selected", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					try
+					{
+	                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aamdani", "root", "root");
+	                    
+	                    Statement sta = connection.createStatement();
+	                    
+	                    String showContact = null;
+	                    String foundShopEmail = null;
+	                    
+	           
+	                    	String query2 = "SELECT Email_Address FROM jobs_posted where Title ='"+SelectedRowTitle+"' and Location ='"+SelectedRowLocation+"' and Distance_From_UPES_In_KMs ='"+SelectedRowDistance+"' and Hourly_Stipend_INR ='"+SelectedRowStipend+"' and Start_Time ='"+SelectedRowStart+"' and End_Time ='"+SelectedRowEnd+"'";
+	                    
+	                    	Statement sta2 = connection.createStatement();
+	                    	ResultSet rs2 = sta2.executeQuery(query2);
+	                        
+	                        rs2.next();
+	                        
+	                        foundShopEmail = rs2.getString(1);
+	                        
+	                        String query3 = "SELECT shopkeeper_phone FROM shopkeeper_sign_up where shopkeeper_email ='"+foundShopEmail+"'";
+	                        
+	                    	Statement sta3 = connection.createStatement();
+	                    	ResultSet rs3 = sta3.executeQuery(query3);
+	                        
+	                        rs3.next();
+	                        
+	                        showContact = rs3.getString(1);
+	                    
+	                    JOptionPane.showMessageDialog(null, new JLabel("Contact employer at : "+showContact, JLabel.CENTER), "Apply for job", JOptionPane.PLAIN_MESSAGE);
+	                    
+	                    connection.close();
+	                    
+	                }
+	                    catch (Exception exception) 
+	            	{
+	                    exception.printStackTrace();
+	                }
+				}
 			}
 		});
 		btnApplyForJob.setForeground(Color.WHITE);
@@ -503,7 +542,12 @@ public class StudentDashboard extends JFrame {
 		
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
-		table.setBackground(Color.cyan);
+		table.setBackground(Color.white);
+		
+		DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+	    r.setHorizontalAlignment(JLabel.CENTER);
+	    table.setDefaultRenderer(Object.class,r);
+	    
 		table.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -521,7 +565,34 @@ public class StudentDashboard extends JFrame {
 				
 			}
 		});
+		table.setForeground(Color.black);
+		table.setGridColor(Color.black);
+		table.setRowHeight(40);
+		Font headerFont1 = new Font("Cambria", Font.BOLD, 18);
+	    table.setFont(headerFont1);
+		table.setAutoResizeMode(0);
 		
 		displayTable();
+		
+		
+		JTableHeader tableHeader = table.getTableHeader();
+	    tableHeader.setBackground(Color.black);
+	    tableHeader.setForeground(Color.white);
+	    Font headerFont = new Font("Cambria", Font.BOLD, 18);
+	    tableHeader.setFont(headerFont);
+	    tableHeader.setPreferredSize(new Dimension(50,50));
+	    
+	    TableColumn col1 = table.getColumnModel().getColumn(0);
+	    col1.setPreferredWidth(150);
+	    TableColumn col2 = table.getColumnModel().getColumn(1);
+	    col2.setPreferredWidth(210);
+	    TableColumn col3 = table.getColumnModel().getColumn(2);
+	    col3.setPreferredWidth(265);
+	    TableColumn col4 = table.getColumnModel().getColumn(3);
+	    col4.setPreferredWidth(190);
+	    TableColumn col5 = table.getColumnModel().getColumn(4);
+	    col5.setPreferredWidth(110);
+	    TableColumn col6 = table.getColumnModel().getColumn(5);
+	    col6.setPreferredWidth(110);
 	}
 }
