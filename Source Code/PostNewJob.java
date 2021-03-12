@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -25,6 +26,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -88,6 +91,9 @@ public class PostNewJob extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		txtJobTitle = new JTextField();
 		txtJobTitle.setBorder(null);
@@ -193,6 +199,7 @@ public class PostNewJob extends JFrame {
                 String JobDistance = Job_Distance_Entered.getText();
                 String JobTimingsFrom = (String)Job_Timing_From_Entered.getSelectedItem();
                 String JobTimingsTo = (String)Job_Timing_To_Entered.getSelectedItem();
+                
                 
                 if (JobTitle.length()==0||JobDescription.length()==0||JobLocation.length()==0||JobStipend.length()==0||JobDistance.length()==0) 
                 {
@@ -311,14 +318,15 @@ public class PostNewJob extends JFrame {
 		contentPane.add(Job_Distance_Entered);
 		
 		Job_Timing_From_Entered = new JComboBox();
-		Job_Timing_From_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
+		Job_Timing_From_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "01 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
 		Job_Timing_From_Entered.setMaximumRowCount(24);
 		Job_Timing_From_Entered.setFont(new Font("Cambria", Font.PLAIN, 15));
 		Job_Timing_From_Entered.setBounds(655, 406, 73, 28);
 		contentPane.add(Job_Timing_From_Entered);
 		
 		Job_Timing_To_Entered = new JComboBox();
-		Job_Timing_To_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
+		Job_Timing_To_Entered.setModel(new DefaultComboBoxModel(new String[] {"00 : 00", "01 : 00", "02 : 00", "03 : 00", "04 : 00", "05 : 00", "06 : 00", "07 : 00", "08 : 00", "09 : 00", "10 : 00", "11 : 00", "12 : 00", "13 : 00", "14 : 00", "15 : 00", "16 : 00", "17 : 00", "18 : 00", "19 : 00", "20 : 00", "21 : 00", "22 : 00", "23 : 00", "24 : 00"}));
+		Job_Timing_To_Entered.setSelectedIndex(24);
 		Job_Timing_To_Entered.setMaximumRowCount(24);
 		Job_Timing_To_Entered.setFont(new Font("Cambria", Font.PLAIN, 15));
 		Job_Timing_To_Entered.setBounds(834, 406, 73, 28);
