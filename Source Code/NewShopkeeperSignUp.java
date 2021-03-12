@@ -14,6 +14,9 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JOptionPane;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -27,6 +30,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 public class NewShopkeeperSignUp extends JFrame {
 
@@ -69,6 +73,9 @@ public class NewShopkeeperSignUp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth()/2 , size.height/2 - getHeight()/2);
 		
 		JTextArea txtrName = new JTextArea();
 		txtrName.setForeground(Color.WHITE);
@@ -143,6 +150,18 @@ public class NewShopkeeperSignUp extends JFrame {
 		shopkeeper_name.setColumns(10);
 		
 		shopkeeper_phone = new JTextField();
+		shopkeeper_phone.addKeyListener(new KeyAdapter() 
+		{
+			@Override
+			public void keyTyped(KeyEvent e) 
+			{
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) 
+				{
+					e.consume();
+				}
+			}
+		});
 		shopkeeper_phone.setForeground(Color.DARK_GRAY);
 		shopkeeper_phone.setFont(new Font("Cambria", Font.BOLD, 18));
 		shopkeeper_phone.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -194,17 +213,17 @@ public class NewShopkeeperSignUp extends JFrame {
                 msg += " \n";
                 if (len != 10) 
                 {
-                    JOptionPane.showMessageDialog(null, "Enter a valid mobile number !");
+                    JOptionPane.showMessageDialog(null, new JLabel("Enter a valid phone number !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 else if(shopkeeperName.length()==0||shopkeeperPhone.length()==0||shopkeeperEmail.length()==0||shopkeeperPswd.length()==0||shopkeeperConfirmpswd.length()==0||shopkeeperShopName.length()==0||shopkeeperShopAddress.length()==0) 
                 {
-                    JOptionPane.showMessageDialog(null, "Please fill out all the fields.");
+                    JOptionPane.showMessageDialog(null, new JLabel("Please fill out all the fields.", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 else if (shopkeeperPswd.compareTo(shopkeeperConfirmpswd)!=0) 
                 {
-                    JOptionPane.showMessageDialog(null, "Password did not match with the confirmed password !");
+                    JOptionPane.showMessageDialog(null, new JLabel("Password did not match with the confirmed password !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 else
@@ -230,13 +249,18 @@ public class NewShopkeeperSignUp extends JFrame {
                         	int x = sta.executeUpdate(query2);
                             if (x != 0) 
                             {
-                            	JOptionPane.showMessageDialog(null,"Welcome, " + msg + "Your account is sucessfully created");
+                            	JOptionPane.showMessageDialog(null, new JLabel("Welcome, " + msg + "Your account is sucessfully created", JLabel.CENTER), "Congrats", JOptionPane.PLAIN_MESSAGE);
                                 connection.close();
+                                
+                                dispose();
+                				PostJobButtonClicked pjbc = new PostJobButtonClicked();
+                				pjbc.setVisible(true);
+                                
                             }
                         }
                         else
                         {
-                        	JOptionPane.showMessageDialog(null, "This email already exists !");
+                        	JOptionPane.showMessageDialog(null, new JLabel("This email already exists !", JLabel.CENTER), "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         
                     }
@@ -245,9 +269,7 @@ public class NewShopkeeperSignUp extends JFrame {
                         exception.printStackTrace();
                     }
     				
-    				dispose();
-    				PostJobButtonClicked pjbc = new PostJobButtonClicked();
-    				pjbc.setVisible(true);
+    				
                 }
 			}
 		});
